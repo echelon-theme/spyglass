@@ -1,0 +1,15 @@
+/*
+ * Hi! Are you looking to add another style on top of Spyglass?
+ *
+ * This file should probably not be modified directly. Custom changes can be added in
+ * a safe way by creating a new file called "_chrome_user.css". This ensures that your
+ * changes will not be overwrote by Spyglass updates.
+ *
+ * If you wish to contribute to Spyglass, then please contribute changes to the SCSS
+ * source, which is put into spyglass.css.
+ */
+
+@import url("spyglass.css");
+
+/* Additional styles from the user ignored by Git. */
+@import url("_chrome_user.css");

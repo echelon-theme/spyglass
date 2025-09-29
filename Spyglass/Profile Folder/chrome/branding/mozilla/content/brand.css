@@ -1,0 +1,19 @@
+#navigator-throbber {
+  appearance: none !important;
+  align-items: center !important;
+  align-self: center !important;
+  justify-content: center !important;
+  margin: 2px 11px 2px 8px !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  border-top: 1px solid #B9BFC7 !important;
+  border-right: 1px solid #A1AAB3 !important;
+  border-bottom: 1px solid #DEE7EE !important;
+  border-left: 1px solid #A4ACB5 !important;
+  list-style-image: url("chrome://branding/content/throbber-single.gif");
+}
+#navigator-throbber[busy=true] {
+  list-style-image: url("chrome://branding/content/throbber-anim.gif");
+}
+
+/*# sourceMappingURL=brand.css.map */
