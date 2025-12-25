@@ -1,0 +1,173 @@
+:root {
+    --urlbar-root-height: 22px !important;
+    --urlbar-min-height: var(--urlbar-root-height) !important;
+
+    --autocomplete-popup-highlight-background: Highlight !important;
+    --autocomplete-popup-highlight-color: HighlightText !important;
+
+    --autocomplete-popup-hover-background: var(--autocomplete-popup-highlight-background) !important;
+}
+
+#navigator-toolbox #AddressToolbar {
+    padding-inline-end: 4px !important;
+}
+
+#go-button {
+    --toolbarbutton-small-icon-size: 20px !important;
+    list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/go.ico") !important;
+    margin-inline-start: 2px !important;
+    padding: 0 7px 0 1px !important;
+    
+    .toolbarbutton-text {
+        margin-inline-start: 2px !important;
+        display: flex !important;
+    }
+}
+
+#urlbar-input::placeholder,
+.searchbar-textbox::placeholder {
+    color: GrayText !important;
+    opacity: 0 !important;
+}
+
+#urlbar-container {
+    padding-block: 0 !important;
+    margin-inline: 0 !important;
+    --urlbar-container-height: var(--urlbar-root-height) !important;
+
+    #urlbar {
+        font-size: 1em !important;
+        color: FieldText !important;
+        --urlbar-height: var(--urlbar-root-height) !important;
+        height: var(--urlbar-height) !important;
+        width: 100% !important;
+        left: 0 !important;
+        top: 0 !important;
+
+        #urlbar-background {
+            visibility: collapse !important;
+        }
+        
+        #urlbar-input-container,
+        .urlbar-input-container {
+            height: var(--urlbar-height) !important;
+            appearance: auto !important;
+            -moz-default-appearance: textfield !important;
+            padding: 0 !important;
+
+            #page-proxy-deck {
+                width: 16px !important;
+                height: 16px !important;
+                margin: 1px !important;
+                margin-inline-end: 4px !important;
+
+                #page-proxy-favicon {
+                    width: 16px !important;
+                    height: 16px !important;
+                    visibility: visible !important;
+
+                    &:not([src]),
+                    &[src="chrome://branding/content/icon32.png"] {
+                        content: var(--page-low-color-icon) !important;
+                    }
+                }
+            }
+
+            #tracking-protection-icon-container,
+            #page-action-buttons {
+                visibility: collapse !important;
+            }
+
+            #identity-box {
+                max-width: 1px !important;
+                margin-inline-end: -1px !important;
+                fill: transparent !important;
+            }
+        }
+
+        &[usertyping="true"] {
+            #urlbar-input-container #page-proxy-deck #page-proxy-favicon { 
+                visibility: hidden !important;
+            }
+        }
+
+        .urlbar-history-dropmarker {
+            height: 100% !important;
+        }
+
+        .urlbarView {
+            width: calc(100% - 41px) !important;
+            margin-inline: 0 !important;
+            margin-inline-start: 23px !important;
+            margin-block-start: -3px !important;
+            background-color: white !important;
+            border: 1px solid black !important;
+
+            .urlbarView-body-inner {
+                width: 100% !important;
+                margin: 0 !important;
+                border: 0 !important;
+
+                .urlbarView-results {
+                    padding-block: 2px !important;
+
+                    .urlbarView-row {
+                        padding-block-start: 1px !important;
+                        padding-inline: 5px !important;
+                        min-height: 0 !important;
+                        border: 0 !important;
+                        border-radius: 0 !important;
+
+                        &[row-selectable]:not([selected]):hover {
+                            color: var(--autocomplete-popup-highlight-color) !important;
+                        }
+
+                        &[label] {
+                            margin: 0 !important;
+                            
+                            &::before {
+                                display: none !important;
+                            }
+                        }
+
+                        .urlbarView-button,
+                        &:not([type="search"], [has-action="true"]) .urlbarView-no-wrap,
+                        .urlbarView-favicon,
+                        .urlbarView-type-icon,
+                        .urlbarView-tail-prefix {
+                            visibility: collapse !important;
+                        }
+
+                        .urlbarView-no-wrap {
+                            margin-block-end: -1px !important;
+                        }
+
+                        .urlbarView-row-inner {
+                            min-height: 0 !important;
+                            padding: 0 !important;
+                        }
+
+                        .urlbarView-title-separator {
+                            &::before {
+                                content: '-' !important;
+                                opacity: 1 !important;
+                            }
+                        }
+
+                        .urlbarView-url,
+                        .urlbarView-action {
+                            font-size: 1em !important;
+                            line-height: inherit !important;
+                            color: inherit !important;
+                        }
+                    }
+                }
+            }
+
+            .search-one-offs {
+                display: none !important;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,92 @@
+#navigator-toolbox {
+    appearance: auto !important;
+    -moz-default-appearance: toolbox !important;
+    background-color: transparent !important;
+    color: -moz-Dialog !important;
+
+    @media (-moz-windows-classic) {
+        :root:not([inFullscreen]) & {
+            padding-inline-start: 1px !important;
+            padding-block-start: 1px !important;
+            border: 1px solid ThreeDShadow !important;
+            box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
+            margin-inline-end: 1px !important;
+            margin-block-end: 1px !important;
+        }
+    }
+
+    :root[inFullscreen] & {
+        border-block-end: 1px solid Black !important;
+    }
+
+    :root:not([inFullscreen], [spyglass-toolbars-locked="true"]) & {
+        margin-block-end: 3px !important;
+        
+        @media (-moz-windows-classic) {
+            & {
+                margin-block-end: 4px !important;
+            }
+        }
+    }
+
+    .toolbar-primary-label {
+        font: Caption !important;
+        font-weight: normal !important;
+        margin: 0 !important;
+        align-items: center !important;
+        margin-inline: 4px !important;
+        margin-block-end: 1px !important;
+    }
+
+    .browser-toolbar {
+        @media not (-moz-windows-classic) {
+            :root:not([inFullscreen]) & {
+                appearance: auto !important;
+                -moz-default-appearance: toolbox !important;
+            }
+        }
+
+        :root:not([inFullscreen]) &:not(:first-of-type) {
+            border-block-start: 1px solid ThreeDHighlight !important;
+        }
+
+        :root:not([inFullscreen])   &:not(:last-of-type) {
+            border-block-end: 1px solid ThreeDShadow !important;
+        }
+
+        padding: 0 !important;
+        background-color: transparent !important;
+        color: -moz-DialogText !important;
+        box-shadow: none !important;
+    }
+}
+
+toolbargrippy {
+    appearance: auto !important;
+    -moz-default-appearance: toolbargripper !important;
+    cursor: w-resize !important;
+
+    @media (-moz-windows-classic) {
+        & {
+            width: 3px !important;
+            height: calc(100% - 4px) !important;
+            margin: 2px !important;
+            margin-inline-end: 0 !important;
+            box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+        }
+    }
+}
+
+:root[spyglass-toolbars-locked="true"] toolbargrippy {
+    display: none !important;
+}
+
+toolbarspring,
+toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"] {
+    max-width: 100% !important;    
+}
+
+:root:not([inFullscreen]) .browserStack {
+    appearance: auto !important;
+    -moz-default-appearance: listbox !important;
+}

@@ -1,0 +1,40 @@
+@import "mixins";
+
+@include toolbar-icons((
+    "back-button": "ie5/icons/toolbar/Back.ico",
+    "forward-button": "ie5/icons/toolbar/Forward.ico",
+    "stop-button": "ie5/icons/toolbar/Stop.ico",
+    "reload-button": "ie5/icons/toolbar/Refresh.ico",
+    "home-button": "ie5/icons/toolbar/Home.ico",
+    "print-button": "ie5/icons/toolbar/Print.ico",
+    "favorites-button": "ie5/icons/toolbar/Favorites.ico",
+    "history-panelmenu": "ie5/icons/toolbar/History.ico",
+    "search-button": "ie5/icons/toolbar/Search.ico",
+    "downloads-button": "ie5/icons/toolbar/Related.ico",
+));
+
+@include toolbar-icons-color((
+    "back-button": "ie5/icons/toolbar/hover/Back.ico",
+    "forward-button": "ie5/icons/toolbar/hover/Forward.ico",
+    "stop-button": "ie5/icons/toolbar/hover/Stop.ico",
+    "reload-button": "ie5/icons/toolbar/hover/Refresh.ico",
+    "home-button": "ie5/icons/toolbar/hover/Home.ico",
+    "print-button": "ie5/icons/toolbar/hover/Print.ico",
+    "favorites-button": "ie5/icons/toolbar/hover/Favorites.ico",
+    "history-panelmenu": "ie5/icons/toolbar/hover/History.ico",
+    "search-button": "ie5/icons/toolbar/hover/Search.ico",
+    "downloads-button": "ie5/icons/toolbar/hover/Related.ico",
+));
+
+// Stop Button in Internet Explorer is always enabled
+#stop-button {
+    &:hover {
+        list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Stop.ico") !important;
+    }
+}
+
+:root {
+    --page-icon: url("chrome://spyglass/content/ie5/icons/page.ico") !important;
+    --page-low-color-icon: url("chrome://spyglass/content/ie5/icons/page-lowcol.ico") !important;
+    --folder-icon: url("chrome://spyglass/content/ie5/icons/folder.ico") !important;
+}

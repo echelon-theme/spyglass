@@ -1,0 +1,12 @@
+toolbarseparator {
+    appearance: auto !important;
+    -moz-default-appearance: separator !important;
+    border-inline-start: 1px solid ThreeDShadow !important;
+    border-inline-end: 1px solid ThreeDHighlight !important;
+
+    @media (-moz-windows-classic) {
+        & {
+            margin: 3px 2px !important;
+        }
+    }
+}

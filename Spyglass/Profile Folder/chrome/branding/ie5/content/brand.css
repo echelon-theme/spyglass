@@ -1,0 +1,15 @@
+#navigator-throbber {
+  appearance: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 2px 11px 4px 7px !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  list-style-image: url("chrome://branding/content/throbber-single.gif");
+}
+#navigator-throbber[busy=true] {
+  list-style-image: url("chrome://branding/content/throbber-anim.gif");
+}
+
+/*# sourceMappingURL=brand.css.map */

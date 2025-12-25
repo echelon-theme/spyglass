@@ -1,0 +1,77 @@
+@use "sass:list";
+@use "sass:string";
+
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+@function image($path) {
+    @return url("chrome://spyglass/content/#{$path}");
+}
+
+@mixin toolbar-icon($toolbar-ids, $icon-id) {
+    $selector: "##{list.nth($toolbar-ids, 1)}";
+
+    @if (list.length($toolbar-ids) > 1) {
+        @for $i from 2 through list.length($toolbar-ids) {
+            $selector: "#{$selector}, ##{list.nth($toolbar-ids, $i)}";
+        }
+    }
+
+    #{$selector} {
+        list-style-image: image($icon-id) !important;
+    }
+}
+
+@mixin toolbar-icon-color($toolbar-ids, $icon-id) {
+    $selector: "##{list.nth($toolbar-ids, 1)}";
+
+    @if (list.length($toolbar-ids) > 1) {
+        @for $i from 2 through list.length($toolbar-ids) {
+            $selector: "#{$selector}, ##{list.nth($toolbar-ids, $i)}";
+        }
+    }
+
+    #{$selector}:not([disabled="true"]) {
+        &:hover,
+        &[open="true"],
+        &[checked="true"] {
+            list-style-image: image($icon-id) !important;
+        }
+    }
+}
+
+@mixin toolbar-icons($map) {
+    @each $id, $icon in $map {
+        @include toolbar-icon($id, $icon);
+    }
+}
+
+@mixin toolbar-icons-color($map) {
+    @each $id, $icon in $map {
+        @include toolbar-icon-color($id, $icon);
+    }
+}
+
+@mixin toolbar-icons-simple($ids) {
+    @each $id in $ids {
+        @include toolbar-icon("#{string.to-lower-case($id)}-button", $id);
+    }
+}
+
+@mixin start($amount) {
+    left: $amount !important;
+
+    &:-moz-locale-dir(rtl) {
+        left: unset !important;
+        right: $amount !important;
+    }
+}
+
+@mixin end($amount) {
+    right: $amount !important;
+
+    &:-moz-locale-dir(rtl) {
+        right: unset !important;
+        left: $amount !important;
+    }
+}

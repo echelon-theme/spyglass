@@ -1,0 +1,6 @@
+:root[spyglass-tabs-disabled="true"],
+:root[inFullscreen] {
+    #TabsToolbar {
+        display: none !important;
+    }
+}

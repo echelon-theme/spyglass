@@ -1,0 +1,11 @@
+<svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg" style="shape-rendering:crispEdges" shape-rendering="crispEdges">
+<g clip-path="url(#clip0_13_2)">
+<path d="M2 0H0L2 2.5L0 5H2L4 2.5L2 0Z" fill="context-fill"/>
+<path d="M6 0H4L6 2.5L4 5H6L8 2.5L6 0Z" fill="context-fill"/>
+</g>
+<defs>
+<clipPath id="clip0_13_2">
+<rect width="8" height="5" fill="context-fill"/>
+</clipPath>
+</defs>
+</svg>

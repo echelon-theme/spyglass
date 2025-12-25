@@ -1,0 +1,252 @@
+#sidebar-box {
+    padding-inline-start: 1px !important;
+    padding-block-start: 1px !important;
+    border: 1px solid ThreeDShadow !important;
+    box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
+    margin-inline-end: 1px !important;
+    margin-block-end: 1px !important;
+
+    #sidebar-header {
+        font-size: 1em !important;
+        background-color: -moz-Dialog !important;
+        border-block-end: 1px solid ThreeDShadow !important;
+        align-items: flex-start !important;
+        padding: 0 !important;
+
+        #sidebar-close {
+            -moz-context-properties: fill !important;
+            width: 20px !important;
+            height: 17px !important;
+            appearance: auto !important;
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            list-style-image: url("chrome://spyglass/content/ie5/close.svg") !important;
+            fill: -moz-DialogText !important;
+            align-self: flex-start !important;
+            margin-inline-end: 2px !important;
+
+            .toolbarbutton-icon {
+                width: 8px !important;
+                height: 7px !important;
+            }
+
+            &:not([disabled="true"]) {
+                &:hover {
+                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                }
+
+                &:hover:active,
+                &[open="true"] {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                    padding-top: 3px !important;
+                    padding-left: 3px !important;
+                    padding-bottom: 1px !important;
+                    padding-right: 1px !important;
+                }
+            }
+        }
+
+        #sidebar-switcher-target {
+            appearance: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            background-color: transparent !important;
+            padding-inline: 4px !important;
+            padding-block: 3px !important;
+
+            &:not([disabled="true"]) {
+                &:hover {
+                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                }
+
+                &:hover:active,
+                &[open="true"] {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                    padding-top: 4px !important;
+                    padding-left: 5px !important;
+                    padding-bottom: 2px !important;
+                    padding-right: 3px !important;
+                }
+            }
+
+            #sidebar-icon,
+            #sidebar-switcher-arrow {
+                display: none !important;
+            }
+            
+            #sidebar-title {
+                padding: 0 !important;
+            }
+        }
+    }
+
+    #sidebar {
+        border-block-start: 1px solid ThreeDHighlight !important;
+    }
+}
+
+.sidebar-splitter {
+    margin-inline-start: 0 !important;
+}
+
+.sidebar-panel {
+    background-color: -moz-Dialog !important;
+
+    .sidebar-placesTree {
+        background-color: Field !important;
+        color: FieldText !important;
+    }
+}
+
+treecol[hideheader="true"] {
+    @media (-moz-windows-classic) {
+        & {
+            border: 0 !important;
+        }
+    }    
+}
+
+/** Bookmarks Panel **/
+.sidebar-panel-options {
+    padding: 1px !important;
+    border-block-end: 1px solid ThreeDShadow !important;
+
+    toolbarbutton {
+        padding: 3px 6px !important;
+
+        &:hover:active {
+            padding-top: 4px !important;
+            padding-bottom: 2px !important;
+            padding-left: 7px !important;
+            padding-right: 5px !important;
+        }
+
+        .toolbarbutton-icon {
+            margin-inline-end: 3px !important;
+        }
+
+        .toolbarbutton-text {
+            margin-inline-end: 2px !important;
+        }
+    }
+}
+
+#bookmarksPanel {
+    #add-button {
+        list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/add.png") !important;
+
+        &:hover {
+            list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/hover/add.png") !important;
+        }
+    }
+
+    #organize-button {
+        list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/organize.png") !important;
+
+        &:hover {
+            list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/hover/organize.png") !important;
+        }
+    }
+
+    #sidebar-search-container {
+        display: none !important;
+    }
+}
+
+/** History Panel **/
+#history-panel {
+    #view-button {
+        height: 100% !important;
+        appearance: auto !important;
+        border-radius: 0 !important;
+        background-color: transparent !important;
+        padding: 3px 4px !important;
+
+        &:not([disabled="true"]) {
+            &:hover {
+                box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+            }
+
+            &:hover:active,
+            &[open="true"] {
+                box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                padding-top: 4px !important;
+                padding-left: 5px !important;
+                padding-bottom: 2px !important;
+                padding-right: 3px !important;
+            }
+        }
+
+        .toolbarbutton-text {
+            margin-inline-start: 1px !important;
+        }
+        
+        .toolbarbutton-icon {
+            display: none !important;
+        }
+
+        &::after {
+            content: '' !important;
+            display: flex !important;
+            width: 5px !important;
+            height: 5px !important;
+            background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+            margin-inline-start: 4px !important;
+        }
+    }
+
+    #search-button {
+        list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/search.png") !important;
+
+        &:hover {
+            list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/hover/search.png") !important;
+        }
+    }
+
+    #sidebar-search-container {
+        font-family: 'MS Sans Serif', 'MS Shell Dlg' !important;
+        flex-direction: column !important;
+        background-color: Field !important;
+        border-block-end: 2px solid -moz-Dialog !important;
+        padding: 9px !important;
+
+        #history-search-bar-label {
+            margin: 0 !important;
+            margin-block-end: 5px !important;
+        }
+
+        #search-box {
+            max-width: 225px !important;
+            padding: 0 !important;
+            padding-top: 2px !important;
+            padding-bottom: 5px !important;
+        }
+
+        .search-box-button-container {
+            max-width: 225px !important;
+            justify-content: flex-end;
+            padding-block-start: 6px !important;
+            padding-block-end: 5px !important;
+
+            button {
+                margin: 0 !important;
+                padding: 3px 6px !important;
+                min-width: 6.818em !important;
+            }
+        }
+
+        #search-now {
+            margin-inline-end: 6px !important;
+        }
+
+        #viewButton {
+            display: none !important;
+        }
+    }
+}
+
+.textbox-search-sign,
+.textbox-search-icons {
+    display: none !important;
+}

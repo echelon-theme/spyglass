@@ -47,7 +47,7 @@ var g_WindowedBrowsing;
         }
         
         _disable() {
-            PrefCalls.lockPref(BROWSER_OPEN_NEWWINDOW_PREF, 3);
+            PrefCalls.lockPref(BROWSER_OPEN_NEWWINDOW_PREF, 2);
 
             this.cmd_newNavigatorTab.setAttribute("oncommand", "OpenBrowserWindow()");
             this.cmd_newNavigatorTabNoEvent.setAttribute("oncommand", "OpenBrowserWindow()");
@@ -59,8 +59,8 @@ var g_WindowedBrowsing;
         }
 
         _enable() {            
-            if (PrefCalls.getPref(BROWSER_OPEN_NEWWINDOW_PREF) == 3) {
-                PrefCalls.setPref(BROWSER_OPEN_NEWWINDOW_PREF, 2, false);
+            if (PrefCalls.getPref(BROWSER_OPEN_NEWWINDOW_PREF) == 2) {
+                PrefCalls.setPref(BROWSER_OPEN_NEWWINDOW_PREF, 3, false);
             }
 
             PrefCalls.unlockPref(BROWSER_OPEN_NEWWINDOW_PREF);
@@ -93,11 +93,17 @@ var g_WindowedBrowsing;
                     userContextId: parseInt(event.target.getAttribute("data-usercontextid")),
                 });
             }
-
-            document.querySelector("#TabsToolbar").setAttribute("hidden", PrefCalls.getPref(SPYGLASS_TABS_DISABLED_PREF));
         }
     }
 
     g_WindowedBrowsing = new WindowedBrowsing;
-    g_WindowedBrowsing.init();
+
+    UC_API.Windows.waitWindowLoading(window).then(win => {
+        try {
+            g_WindowedBrowsing.init();
+        } 
+        catch (e) {
+            throw e;
+        }
+    });
 }

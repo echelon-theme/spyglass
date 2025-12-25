@@ -1,0 +1,37 @@
+:root {
+    --navigator-throbber-background: rgb(0, 0, 0);
+    --navigator-throbber-background-image: url("chrome://spyglass/content/ie5/throbber/throbber.png");
+    --navigator-throbber-busy-background-image: url("chrome://spyglass/content/ie5/throbber/throbber-busy.png");
+}
+
+#navigator-throbber {
+    min-width: 38px !important;
+    min-height: 22px !important;
+    padding: 0 !important;
+    appearance: none !important;
+    background-color: rgb(0, 0, 0) !important;
+    justify-content: flex-start !important;
+
+    &::before {
+        content: '';
+        display: flex;
+        height: calc(100% + 1px) !important;
+        border-inline-start: 1px solid ThreeDShadow !important;
+        border-inline-end: 1px solid ThreeDHighlight !important;
+        margin-inline-start: -2px !important;
+        margin-block-end: -1px !important;
+    }
+
+    .toolbarbutton-icon {
+        width: 22px !important;
+        height: 22px !important;
+        box-sizing: content-box !important;
+        margin-inline: auto !important;
+        
+        background-image: var(--navigator-throbber-background-image) !important;
+
+        &[busy="true"] {
+            background-image: var(--navigator-throbber-busy-background-image) !important;
+        }
+    }
+}

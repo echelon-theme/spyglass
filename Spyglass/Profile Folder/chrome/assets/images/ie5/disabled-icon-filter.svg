@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<filter id="disabledIcon">
+			<feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="lum"/>
+			<feComponentTransfer in="lum" result="thresh">
+				<feFuncA type="linear" slope="100" intercept="-90"/>
+			</feComponentTransfer>
+			<feComposite in="thresh" in2="SourceAlpha" operator="in" result="whiteMask"/>
+			<feComposite in="SourceAlpha" in2="whiteMask" operator="out" result="nonWhiteMask"/>
+			<feFlood flood-color="var(--recolor-white, -moz-Dialog)" result="faceFlood"/>
+			<feFlood flood-color="var(--recolor-other, ThreeDShadow)" result="grayFlood"/>
+			<feComposite in="faceFlood" in2="whiteMask" operator="in" result="faceOnly"/>
+			<feComposite in="grayFlood" in2="nonWhiteMask" operator="in" result="grayOnly"/>
+			<feComposite in="faceOnly" in2="grayOnly" operator="over" result="combined"/>
+			<feComposite in="combined" in2="SourceGraphic" operator="over"/>
+		</filter>
+	</defs>
+</svg>

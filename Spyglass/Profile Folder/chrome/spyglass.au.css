@@ -1,0 +1,18 @@
+@media (not (-moz-windows-non-native-menus)) and (-moz-windows-classic) {
+  menupopup,
+  toolbarbutton menupopup[placespopup] {
+    border-top-color: -moz-Dialog !important;
+    border-left-color: -moz-Dialog !important;
+    border-bottom-color: ThreeDDarkShadow !important;
+    border-right-color: ThreeDDarkShadow !important;
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+    padding: 1px !important;
+  }
+}
+@media not (-moz-windows-non-native-menus) {
+  menuseparator {
+    margin-inline: 1px !important;
+  }
+}
+
+/*# sourceMappingURL=spyglass.au.css.map */

@@ -1,0 +1,98 @@
+#nav-bar {
+    :root:not([spyglass-toolbars-locked="true"]) & {
+        toolbargrippy {
+            margin-inline-end: 4px !important;
+        }
+    }
+
+    .toolbarbutton-1:not([type="menu"]) {
+        padding: 3px 4px !important;
+
+        &:not([disabled="true"]),
+        &#stop-button,
+        &#reload-button {
+            &:hover:active,
+            &[open="true"],
+            &[checked="true"] {
+                padding: 4px 3px 2px 5px !important;
+            }
+        }
+
+        :root:not([inFullscreen])[spyglass-appearance-toolbar-mode="0"] &:not(#PanelUI-menu-button, #nav-bar-overflow-button) {
+            min-width: var(--nav-bar-toolbarbutton-width) !important;
+            flex-direction: column !important;
+
+            .toolbarbutton-text {
+                display: flex !important;
+                margin-block-start: 2px !important;
+            }
+        }
+
+        :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) & {
+            .toolbarbutton-text {
+                margin-inline-start: 2px !important;
+                margin-inline-end: 5px !important;
+                margin-block-end: 1px !important;
+            }
+        }
+
+        .toolbarbutton-icon,
+        .toolbarbutton-badge-stack > .toolbarbutton-icon {
+            width: var(--toolbarbutton-icon-size) !important;
+            height: var(--toolbarbutton-icon-size) !important;
+        }
+    }
+
+    #back-button .toolbarbutton-1 .toolbarbutton-text {
+        margin-inline-end: 0 !important;
+    }
+
+    #PanelUI-menu-button {
+        list-style-image: none !important;
+        padding: 0 !important;
+        max-width: 1px !important;
+        margin-inline-end: -1px !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    #nav-bar-overflow-button {
+        -moz-context-properties: fill !important;
+        list-style-image: url("chrome://spyglass/content/ie5/chevron.svg") !important;
+        fill: -moz-DialogText !important;
+        padding: 5px 2px !important;
+        align-items: flex-start !important;
+
+        .toolbarbutton-icon {
+            width: 8px !important;
+            height: 5px !important;
+        }
+
+        .toolbarbutton-animatable-box {
+            display: none !important;
+        }
+    }
+}
+
+#stop-reload-button {
+    flex-direction: row-reverse !important;
+
+    #reload-button,
+    #stop-button {
+        display: flex !important;
+        opacity: 1 !important;
+    }
+}
+
+#downloads-button {
+    #downloads-indicator-anchor,
+    #downloads-indicator-progress-outer,
+    #downloads-indicator-start-box,
+    #downloads-indicator-finish-box {
+        display: none !important;
+    }
+
+    .toolbarbutton-icon {
+        display: flex !important;
+    }
+}

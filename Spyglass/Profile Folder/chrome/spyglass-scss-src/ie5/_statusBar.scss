@@ -1,0 +1,101 @@
+#status-bar {
+    appearance: auto !important;
+    -moz-default-appearance: statusbar !important;
+    background-color: -moz-Dialog !important;
+
+    :root[inFullscreen] & {
+        display: none !important;
+    }
+
+    statusbarpanel {
+        appearance: auto !important;
+        -moz-default-appearance: statusbarpanel !important; 
+        align-items: center !important;
+        padding: 0 1px !important;
+    }
+
+    #statusbar-display {
+        #statuspanel {
+            display: flex !important;
+            position: static !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+            align-items: center !important;
+            margin-inline-start: 4px !important;
+            margin-block-end: 2px !important;
+            transition: none !important;
+
+            #statuspanel-label {
+                margin: 0 !important;
+                border: 0 !important;
+                padding: 0 !important;
+                background-color: transparent !important;
+                color: inherit !important;
+            }
+
+            &[inactive] {
+                visibility: collapse !important;
+
+                #statuspanel-label {
+                    opacity: 0 !important;
+                }
+            }
+
+            &:not([inactive="true"]) ~ .statusbarpanel-text {
+                visibility: collapse !important;
+            }
+        }
+    }
+
+    .statusbarpanel-icon {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .statusbarpanel-text {
+        margin-inline-start: 4px !important;
+        margin-block-end: 2px !important;
+    }
+
+    #statusbar-display {
+        list-style-image: var(--page-low-color-icon) !important;
+    }
+
+    #offline-status {
+        &[offline] {
+            list-style-image: url("chrome://spyglass/content/ie5/icons/network_drive_unavailable.ico") !important;
+        }
+    }
+
+    #statusbar-zone {
+        min-width: 151px !important;
+        list-style-image: url("chrome://spyglass/content/ie5/icons/world.ico") !important;
+
+        &[zone="local"] {
+            list-style-image: url("chrome://spyglass/content/ie5/icons/computer_explorer_2k.ico") !important;
+        }
+    }
+}
+
+.resizerpanel {
+    width: 13px !important;
+    height: 13px !important;
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    appearance: resizerpanel !important;
+
+    resizer {
+        margin-block-start: -4px !important;
+        margin-inline-start: -4px !important;
+    }
+}
+
+resizer {
+    appearance: auto !important;
+    -moz-default-appearance: resizer !important;
+    width: unset !important;
+    height: unset !important;
+}

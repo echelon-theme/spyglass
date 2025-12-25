@@ -1,0 +1,34 @@
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+    padding: 3px 4px !important;
+    margin: 0 !important;
+    
+    &:not([disabled="true"]) {
+        &:hover:active,
+        &[open="true"] {
+            padding-top: 4px !important;
+            padding-left: 5px !important;
+            padding-bottom: 2px !important;
+            padding-right: 3px !important;
+        }
+    }
+
+    .toolbarbutton-icon {
+        margin-inline-end: 3px !important;
+    }
+
+    .toolbarbutton-text {
+        margin-inline-end: 4px !important;
+    }
+}
+
+#personal-toolbar-empty {
+    display: none !important;
+}
+
+.default-favicon {
+    list-style-image: var(--page-icon) !important;
+}
+
+.bookmark-item[container] {
+    list-style-image: var(--folder-icon) !important;
+}
