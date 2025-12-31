@@ -17,7 +17,15 @@ var g_spyglassSoundManager;
             return Registry.getRegKeyValue("HKCU", "AppEvents\\Schemes\\Apps\\Explorer\\Navigating\\.Current", "", "String");
         }
 
-        init() {
+        async init() {
+            await new Promise(resolve => {
+                let delayedStartupObserver = (aSubject, aTopic, aData) => {
+                    Services.obs.removeObserver(delayedStartupObserver, "browser-delayed-startup-finished");
+                    resolve();
+                };
+                Services.obs.addObserver(delayedStartupObserver, "browser-delayed-startup-finished");
+            });
+            
             gBrowser.addTabsProgressListener({
                 onStateChange(browser, webProgress, request, flags) {
                     if (
