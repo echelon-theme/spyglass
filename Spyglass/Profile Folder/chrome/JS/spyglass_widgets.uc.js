@@ -153,7 +153,6 @@ class SpyglassWidgetManager
             removable: true,
 
             label: LocaleUtils.str(urlbarBundle, "go_button.label"),
-            // TODO (travy-patty): Add "Go to "x"" functionality
             tooltiptext: LocaleUtils.str(urlbarBundle, "go_button.tooltiptext"),
             defaultArea: CustomizableUI.AREA_NAVBAR,
 
@@ -162,7 +161,12 @@ class SpyglassWidgetManager
             },
 
             onCreated: function(toolbarbutton) {
-                return toolbarbutton;
+                /*
+                *   Functionality that changes the tooltip to 'Go to "(url)"' on hover.
+                */
+                toolbarbutton.addEventListener("mouseenter", (e) => {
+                    toolbarbutton.setAttribute("tooltiptext", LocaleUtils.str(urlbarBundle, "go_button_site.tooltiptext", gIdentityHandler._uri.spec));
+                });
             }
         })
 

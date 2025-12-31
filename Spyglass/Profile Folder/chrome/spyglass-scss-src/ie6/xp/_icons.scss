@@ -1,0 +1,31 @@
+& {
+    --page-icon: url("chrome://spyglass/content/ie6/xp/icons/page.ico") !important;
+    --page-low-color-icon: url("chrome://spyglass/content/ie6/xp/icons/page-lowcol.ico") !important;
+    --folder-icon: url("chrome://spyglass/content/ie6/xp/icons/folder.ico") !important;
+}
+
+@include toolbar-icons((
+    "back-button": "ie6/xp/icons/toolbar/back.ico",
+    "forward-button": "ie6/xp/icons/toolbar/forward.ico",
+    "stop-button": "ie6/xp/icons/toolbar/stop.ico",
+    "reload-button": "ie6/xp/icons/toolbar/refresh.ico",
+    "home-button": "ie6/xp/icons/toolbar/home.ico",
+    "print-button": "ie6/xp/icons/toolbar/print.ico",
+    "favorites-button": "ie6/xp/icons/toolbar/favorites.ico",
+    "history-panelmenu": "ie6/xp/icons/toolbar/history.ico",
+    "search-button": "ie6/xp/icons/toolbar/search.ico",
+    "downloads-button": "ie6/xp/icons/toolbar/related.ico",
+));
+
+@include toolbar-icons-color((
+    "back-button": "ie6/xp/icons/toolbar/hover/back.ico",
+    "forward-button": "ie6/xp/icons/toolbar/hover/forward.ico",
+    "stop-button": "ie6/xp/icons/toolbar/hover/stop.ico",
+    "reload-button": "ie6/xp/icons/toolbar/hover/refresh.ico",
+    "home-button": "ie6/xp/icons/toolbar/hover/home.ico",
+    "print-button": "ie6/xp/icons/toolbar/hover/print.ico",
+    "favorites-button": "ie6/xp/icons/toolbar/hover/favorites.ico",
+    "history-panelmenu": "ie6/xp/icons/toolbar/hover/history.ico",
+    "search-button": "ie6/xp/icons/toolbar/hover/search.ico",
+    "downloads-button": "ie6/xp/icons/toolbar/hover/related.ico",
+));

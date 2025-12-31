@@ -1,8 +1,8 @@
 
--brand-shorter-name = Netscape
--brand-short-name = Netscape
--brand-shortcut-name = Netscape
--brand-full-name = Netscape
--brand-product-name = Netscape
--vendor-short-name = Netscape
-trademarkInfo = Netscape, Netscape Navigator, and the Netscape logo are registered trademarks of Netscape Communications Corporation in the United States and other countries.
+-brand-shorter-name = Internet Explorer
+-brand-short-name = Internet Explorer
+-brand-shortcut-name = Internet Explorer
+-brand-full-name = Microsoft Internet Explorer
+-brand-product-name = Microsoft Internet Explorer
+-vendor-short-name = Microsoft
+trademarkInfo = Warning: This computer program is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this program, or any portion of it, may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.

@@ -1,11 +1,22 @@
 #toolbar-menubar {
     #menubar-items {
         padding-block-start: 1px !important;
+        margin: 0 !important;
+        
+        @media not (-moz-windows-classic) {  
+            & {
+                margin-inline-start: 2px !important;
+            }
+        }
     }
     
     :root:not([spyglass-toolbars-locked="true"]) & {
         toolbargrippy {
             margin-inline-end: 4px !important;
+
+            @media not (-moz-windows-classic) {  
+                margin-inline-end: 2px !important;
+            }
         }
     }
 
@@ -40,6 +51,26 @@
                     padding-bottom: 2px !important;
                     padding-right: 7px !important;
                 }
+            }
+
+            & > .menubar-text {
+                margin: 0 !important;
+            }
+        }
+    }
+}
+
+@media not (-moz-windows-classic) {
+    menubar {
+        & > menu {
+            color: MenuText !important;
+            border: 0 !important;
+            background-color: transparent !important;
+            padding: 3px 8px !important;
+
+            &[_moz-menuactive="true"] {
+                color: HighlightText !important;
+                background-color: Highlight !important;
             }
 
             & > .menubar-text {

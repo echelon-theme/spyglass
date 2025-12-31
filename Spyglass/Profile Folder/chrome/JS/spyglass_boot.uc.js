@@ -10,6 +10,7 @@ let SPYGLASS_BOOT_CONFIG = {
 	/* Main browser window */
 	"chrome://browser/content/browser.xhtml": {
 		prefs: [
+			"spyglass.appearance.xp",
 			"spyglass.appearance.ie6",
 			"spyglass.appearance.toolbar.large",
 			"spyglass.appearance.toolbar.mode",

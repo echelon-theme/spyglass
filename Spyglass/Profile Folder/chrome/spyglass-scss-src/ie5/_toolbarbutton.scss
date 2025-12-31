@@ -28,28 +28,32 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
     background-color: transparent !important;
     text-shadow: none !important;
 
-    &:not([disabled="true"]),
-    &#stop-button,
-    &#reload-button {
-        &:hover {
-            box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-        }
+    @media (-moz-windows-classic) {
+        & {
+            &:not([disabled="true"]),
+            &#stop-button,
+            &#reload-button {
+                &:hover {
+                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                }
 
-        &:hover:active {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-        }
+                &:hover:active {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                }
 
-        &[open="true"],
-        &[checked="true"] {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-        }
+                &[open="true"],
+                &[checked="true"] {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+                }
 
-        &[checked="true"]:not(:hover) {
-            // HACK FOR CHECKERBOARD
-            background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
-            background-repeat: repeat !important;
-            background-size: 2px 2px !important;
-            background-position: top left !important;
+                &[checked="true"]:not(:hover) {
+                    // HACK FOR CHECKERBOARD
+                    background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
+                    background-repeat: repeat !important;
+                    background-size: 2px 2px !important;
+                    background-position: top left !important;
+                }
+            }
         }
     }
 
@@ -87,47 +91,78 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
     }
 }
 
-.toolbarbutton-1[type="menu"] {
-    padding: 0 !important;
-    appearance: none !important;
+@media (-moz-windows-classic) {
+    .toolbarbutton-1[type="menu"] {
+        padding: 0 !important;
+        appearance: none !important;
 
-    &:not([disabled="true"]) {
-        &:hover, &:hover:active, &[open="true"], &[checked="true"] {
-            box-shadow: none !important;
-        }
-    }
-
-    &:not([disabled="true"]) {
-        &:hover > .toolbarbutton-1 {
-            box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+        &:not([disabled="true"]) {
+            &:hover, &:hover:active, &[open="true"], &[checked="true"] {
+                box-shadow: none !important;
+            }
         }
 
-        &:hover:active > .toolbarbutton-1 {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+        &:not([disabled="true"]) {
+            &:hover > .toolbarbutton-1 {
+                box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+            }
+
+            &:hover:active > .toolbarbutton-1 {
+                box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+            }
+
+            &[open="true"] > .toolbarbutton-1,
+            &[checked="true"] > .toolbarbutton-1 {
+                box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+            }
+
+            &[checked="true"]:not(:hover) > .toolbarbutton-1 {
+                // HACK FOR CHECKERBOARD
+                background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
+                background-repeat: repeat !important;
+                background-size: 2px 2px !important;
+                background-position: top left !important;
+            }
         }
 
-        &[open="true"] > .toolbarbutton-1,
-        &[checked="true"] > .toolbarbutton-1 {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-        }
+        .toolbarbutton-menu-dropmarker {
+            -moz-context-properties: fill !important;
+            width: 13px !important;
+            content: none !important;
+            list-style-image: none !important;
+            background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            pointer-events: all !important;
+            height: 100% !important;
+            align-items: center !important;
+            fill: -moz-DialogText !important;
 
-        &[checked="true"]:not(:hover) > .toolbarbutton-1 {
-            // HACK FOR CHECKERBOARD
-            background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
-            background-repeat: repeat !important;
-            background-size: 2px 2px !important;
-            background-position: top left !important;
+            &[disabled="true"] {
+                fill: ThreeDShadow !important;
+                filter: drop-shadow(1px 1px ThreeDHighlight) !important;
+            }
+
+            &:not([disabled="true"]) {
+                .toolbarbutton-1[type="menu"]:hover & {
+                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                }
+
+                .toolbarbutton-1[type="menu"]:hover:active & {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                }
+
+                .toolbarbutton-1[type="menu"][open="true"] & {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+                }
+            }
         }
     }
 
     .toolbarbutton-menu-dropmarker {
         -moz-context-properties: fill !important;
-        width: 13px !important;
-        content: none !important;
-        list-style-image: none !important;
-        background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
+        padding-inline: 4px !important;
+        list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
         pointer-events: all !important;
         height: 100% !important;
         align-items: center !important;
@@ -154,31 +189,9 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
     }
 }
 
-.toolbarbutton-menu-dropmarker {
-    -moz-context-properties: fill !important;
-    padding-inline: 4px !important;
-    list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
-    pointer-events: all !important;
-    height: 100% !important;
-    align-items: center !important;
-    fill: -moz-DialogText !important;
-
-    &[disabled="true"] {
-        fill: ThreeDShadow !important;
-        filter: drop-shadow(1px 1px ThreeDHighlight) !important;
-    }
-
-    &:not([disabled="true"]) {
-        .toolbarbutton-1[type="menu"]:hover & {
-            box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-        }
-
-        .toolbarbutton-1[type="menu"]:hover:active & {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-        }
-
-        .toolbarbutton-1[type="menu"][open="true"] & {
-            box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-        }
+@media not (-moz-windows-classic) {
+    .toolbarbutton-1[type="menu"] {
+        padding: 0 !important;
+        appearance: none !important;
     }
 }

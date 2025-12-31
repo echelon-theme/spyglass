@@ -9,7 +9,7 @@
     min-height: 22px !important;
     padding: 0 !important;
     appearance: none !important;
-    background-color: rgb(0, 0, 0) !important;
+    background-color: var(--navigator-throbber-background) !important;
     justify-content: flex-start !important;
 
     &::before {
@@ -20,6 +20,13 @@
         border-inline-end: 1px solid ThreeDHighlight !important;
         margin-inline-start: -2px !important;
         margin-block-end: -1px !important;
+        z-index: 1 !important;
+
+        @media not (-moz-windows-classic) {
+            & {
+                border-inline-start: 1px solid var(--rebar-band-color) !important;
+            }
+        }
     }
 
     .toolbarbutton-icon {

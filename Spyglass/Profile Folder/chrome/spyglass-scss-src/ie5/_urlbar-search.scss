@@ -93,6 +93,13 @@
 
         .urlbar-history-dropmarker {
             height: 100% !important;
+
+            @media not (-moz-windows-classic) {
+                & {
+                    margin: -1px !important;
+                    height: calc(100% + 2px) !important;
+                }
+            }
         }
 
         .urlbarView {

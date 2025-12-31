@@ -1,0 +1,13 @@
+#go-button {
+    padding: 0 11px 0 1px !important;
+    list-style-image: url("chrome://spyglass/content/ie6/xp/icons/go.png") !important;
+
+    &:hover {
+        list-style-image: url("chrome://spyglass/content/ie6/xp/icons/go-hover.png") !important;
+    }
+
+    .toolbarbutton-icon {
+        margin-bottom: 1px !important;
+        margin-inline: 2px !important;
+    }
+}

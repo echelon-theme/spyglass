@@ -1,4 +1,10 @@
 #nav-bar {
+    @media not (-moz-windows-classic) {  
+        & #nav-bar-customization-target {
+            padding-inline-start: 2px !important;
+        }
+    }
+
     :root:not([spyglass-toolbars-locked="true"]) & {
         toolbargrippy {
             margin-inline-end: 4px !important;
@@ -6,7 +12,17 @@
     }
 
     .toolbarbutton-1:not([type="menu"]) {
-        padding: 3px 4px !important;
+        @media (-moz-windows-classic) {
+            & {
+                padding: 3px 4px !important;
+            }
+        }
+
+        @media not (-moz-windows-classic) {
+            & {
+                padding: 7px 4px !important;
+            }
+        }
 
         &:not([disabled="true"]),
         &#stop-button,
@@ -28,11 +44,27 @@
             }
         }
 
-        :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) & {
-            .toolbarbutton-text {
-                margin-inline-start: 2px !important;
-                margin-inline-end: 5px !important;
-                margin-block-end: 1px !important;
+        @media (-moz-windows-classic) {
+            :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) & {
+                .toolbarbutton-text {
+                    margin-inline-start: 2px !important;
+                    margin-inline-end: 5px !important;
+                    margin-block-end: 1px !important;
+                }
+
+                .toolbarbutton-icon {
+                    margin-inline-start: -1px !important;
+                }
+            }
+        }
+
+        @media not (-moz-windows-classic) {
+            :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) & {
+                .toolbarbutton-text {
+                    margin-inline-start: 4px !important;
+                    margin-inline-end: 4px !important;
+                    margin-block-end: 1px !important;
+                }
             }
         }
 

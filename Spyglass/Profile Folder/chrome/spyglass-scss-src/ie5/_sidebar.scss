@@ -1,10 +1,14 @@
-#sidebar-box {
-    padding-inline-start: 1px !important;
-    padding-block-start: 1px !important;
-    border: 1px solid ThreeDShadow !important;
-    box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
-    margin-inline-end: 1px !important;
-    margin-block-end: 1px !important;
+#sidebar-box {  
+    @media (-moz-windows-classic) {
+        & {
+            padding-inline-start: 1px !important;
+            padding-block-start: 1px !important;
+            border: 1px solid ThreeDShadow !important;
+            box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
+            margin-inline-end: 1px !important;
+            margin-block-end: 1px !important;
+        }
+    }
 
     #sidebar-header {
         font-size: 1em !important;
@@ -30,18 +34,20 @@
                 height: 7px !important;
             }
 
-            &:not([disabled="true"]) {
-                &:hover {
-                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-                }
+            @media (-moz-windows-classic) {
+                &:not([disabled="true"]) {
+                    &:hover {
+                        box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                    }
 
-                &:hover:active,
-                &[open="true"] {
-                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-                    padding-top: 3px !important;
-                    padding-left: 3px !important;
-                    padding-bottom: 1px !important;
-                    padding-right: 1px !important;
+                    &:hover:active,
+                    &[open="true"] {
+                        box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                        padding-top: 3px !important;
+                        padding-left: 3px !important;
+                        padding-bottom: 1px !important;
+                        padding-right: 1px !important;
+                    }
                 }
             }
         }
@@ -55,18 +61,20 @@
             padding-inline: 4px !important;
             padding-block: 3px !important;
 
-            &:not([disabled="true"]) {
-                &:hover {
-                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-                }
+            @media (-moz-windows-classic) {
+                &:not([disabled="true"]) {
+                    &:hover {
+                        box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                    }
 
-                &:hover:active,
-                &[open="true"] {
-                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-                    padding-top: 4px !important;
-                    padding-left: 5px !important;
-                    padding-bottom: 2px !important;
-                    padding-right: 3px !important;
+                    &:hover:active,
+                    &[open="true"] {
+                        box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                        padding-top: 4px !important;
+                        padding-left: 5px !important;
+                        padding-bottom: 2px !important;
+                        padding-right: 3px !important;
+                    }
                 }
             }
 
@@ -162,19 +170,21 @@ treecol[hideheader="true"] {
         border-radius: 0 !important;
         background-color: transparent !important;
         padding: 3px 4px !important;
+        
+        @media (-moz-windows-classic) {
+            &:not([disabled="true"]) {
+                &:hover {
+                    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+                }
 
-        &:not([disabled="true"]) {
-            &:hover {
-                box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-            }
-
-            &:hover:active,
-            &[open="true"] {
-                box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-                padding-top: 4px !important;
-                padding-left: 5px !important;
-                padding-bottom: 2px !important;
-                padding-right: 3px !important;
+                &:hover:active,
+                &[open="true"] {
+                    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+                    padding-top: 4px !important;
+                    padding-left: 5px !important;
+                    padding-bottom: 2px !important;
+                    padding-right: 3px !important;
+                }
             }
         }
 
@@ -233,6 +243,7 @@ treecol[hideheader="true"] {
                 margin: 0 !important;
                 padding: 3px 6px !important;
                 min-width: 6.818em !important;
+                background-color: -moz-Dialog !important;
             }
         }
 

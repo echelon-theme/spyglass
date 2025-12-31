@@ -1,3 +1,7 @@
+:root {
+    background-color: -moz-dialog !important;
+}
+
 #navigator-toolbox {
     appearance: auto !important;
     -moz-default-appearance: toolbox !important;
@@ -30,28 +34,44 @@
     }
 
     .toolbar-primary-label {
-        font: Caption !important;
-        font-weight: normal !important;
         margin: 0 !important;
         align-items: center !important;
-        margin-inline: 4px !important;
-        margin-block-end: 1px !important;
+
+        @media (-moz-windows-classic) {
+            font: Caption !important;
+            font-weight: normal !important;
+            margin-inline: 4px !important;
+            margin-block-end: 1px !important;
+        }
+
+        @media not (-moz-windows-classic) {
+            // Also, I don't feel assed to add GetThemeFonts yet.
+            color: var(--rebar-text-color) !important;
+            margin-inline: 6px 4px !important;
+            margin-block-end: 2px !important;
+        }
     }
 
     .browser-toolbar {
         @media not (-moz-windows-classic) {
             :root:not([inFullscreen]) & {
-                appearance: auto !important;
-                -moz-default-appearance: toolbox !important;
+                border: 0 !important;
+
+                &:not(:first-of-type) {
+                    appearance: auto !important;
+                    -moz-default-appearance: toolbar !important;
+                }
             }
         }
 
-        :root:not([inFullscreen]) &:not(:first-of-type) {
-            border-block-start: 1px solid ThreeDHighlight !important;
-        }
+        @media (-moz-windows-classic) {
+            :root:not([inFullscreen]) &:not(:first-of-type) {
+                border-block-start: 1px solid ThreeDHighlight !important;
+            }
 
-        :root:not([inFullscreen])   &:not(:last-of-type) {
-            border-block-end: 1px solid ThreeDShadow !important;
+            :root:not([inFullscreen]) &:not(:last-of-type) {
+                border-block-end: 1px solid ThreeDShadow !important;
+            }
         }
 
         padding: 0 !important;
@@ -87,6 +107,6 @@ toolbarpaletteitem[place="toolbar"][id^="wrapper-customizableui-special-spring"]
 }
 
 :root:not([inFullscreen]) .browserStack {
-    appearance: auto !important;
-    -moz-default-appearance: listbox !important;
+	box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset -2px -2px 0 ThreeDFace, inset 2px 2px 0 ThreeDDarkShadow !important;
+	padding: 2px !important;
 }

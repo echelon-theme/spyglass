@@ -1,4 +1,8 @@
 /* ::::: Internet Explorer 5 ::::: */
+:root {
+  background-color: -moz-dialog !important;
+}
+
 #navigator-toolbox {
   appearance: auto !important;
   -moz-default-appearance: toolbox !important;
@@ -27,12 +31,23 @@
   }
 }
 #navigator-toolbox .toolbar-primary-label {
-  font: Caption !important;
-  font-weight: normal !important;
   margin: 0 !important;
   align-items: center !important;
-  margin-inline: 4px !important;
-  margin-block-end: 1px !important;
+}
+@media (-moz-windows-classic) {
+  #navigator-toolbox .toolbar-primary-label {
+    font: Caption !important;
+    font-weight: normal !important;
+    margin-inline: 4px !important;
+    margin-block-end: 1px !important;
+  }
+}
+@media not (-moz-windows-classic) {
+  #navigator-toolbox .toolbar-primary-label {
+    color: var(--rebar-text-color) !important;
+    margin-inline: 6px 4px !important;
+    margin-block-end: 2px !important;
+  }
 }
 #navigator-toolbox .browser-toolbar {
   padding: 0 !important;
@@ -42,15 +57,20 @@
 }
 @media not (-moz-windows-classic) {
   :root:not([inFullscreen]) #navigator-toolbox .browser-toolbar {
+    border: 0 !important;
+  }
+  :root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:first-of-type) {
     appearance: auto !important;
-    -moz-default-appearance: toolbox !important;
+    -moz-default-appearance: toolbar !important;
   }
 }
-:root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:first-of-type) {
-  border-block-start: 1px solid ThreeDHighlight !important;
-}
-:root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:last-of-type) {
-  border-block-end: 1px solid ThreeDShadow !important;
+@media (-moz-windows-classic) {
+  :root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:first-of-type) {
+    border-block-start: 1px solid ThreeDHighlight !important;
+  }
+  :root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:last-of-type) {
+    border-block-end: 1px solid ThreeDShadow !important;
+  }
 }
 
 toolbargrippy {
@@ -78,15 +98,26 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
 }
 
 :root:not([inFullscreen]) .browserStack {
-  appearance: auto !important;
-  -moz-default-appearance: listbox !important;
+  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset -2px -2px 0 ThreeDFace, inset 2px 2px 0 ThreeDDarkShadow !important;
+  padding: 2px !important;
 }
 
 #toolbar-menubar #menubar-items {
   padding-block-start: 1px !important;
+  margin: 0 !important;
+}
+@media not (-moz-windows-classic) {
+  #toolbar-menubar #menubar-items {
+    margin-inline-start: 2px !important;
+  }
 }
 :root:not([spyglass-toolbars-locked=true]) #toolbar-menubar toolbargrippy {
   margin-inline-end: 4px !important;
+}
+@media not (-moz-windows-classic) {
+  :root:not([spyglass-toolbars-locked=true]) #toolbar-menubar toolbargrippy {
+    margin-inline-end: 2px !important;
+  }
 }
 #toolbar-menubar spacer {
   visibility: collapse !important;
@@ -119,6 +150,21 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
     margin: 0 !important;
   }
 }
+@media not (-moz-windows-classic) {
+  menubar > menu {
+    color: MenuText !important;
+    border: 0 !important;
+    background-color: transparent !important;
+    padding: 3px 8px !important;
+  }
+  menubar > menu[_moz-menuactive=true] {
+    color: HighlightText !important;
+    background-color: Highlight !important;
+  }
+  menubar > menu > .menubar-text {
+    margin: 0 !important;
+  }
+}
 :root {
   --navigator-throbber-background: rgb(0, 0, 0);
   --navigator-throbber-background-image: url("chrome://spyglass/content/ie5/throbber/throbber.png");
@@ -130,7 +176,7 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
   min-height: 22px !important;
   padding: 0 !important;
   appearance: none !important;
-  background-color: rgb(0, 0, 0) !important;
+  background-color: var(--navigator-throbber-background) !important;
   justify-content: flex-start !important;
 }
 #navigator-throbber::before {
@@ -141,6 +187,12 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
   border-inline-end: 1px solid ThreeDHighlight !important;
   margin-inline-start: -2px !important;
   margin-block-end: -1px !important;
+  z-index: 1 !important;
+}
+@media not (-moz-windows-classic) {
+  #navigator-throbber::before {
+    border-inline-start: 1px solid var(--rebar-band-color) !important;
+  }
 }
 #navigator-throbber .toolbarbutton-icon {
   width: 22px !important;
@@ -241,6 +293,12 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
 }
 #urlbar-container #urlbar .urlbar-history-dropmarker {
   height: 100% !important;
+}
+@media not (-moz-windows-classic) {
+  #urlbar-container #urlbar .urlbar-history-dropmarker {
+    margin: -1px !important;
+    height: calc(100% + 2px) !important;
+  }
 }
 #urlbar-container #urlbar .urlbarView {
   width: calc(100% - 41px) !important;
@@ -421,35 +479,37 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   background-color: transparent !important;
   text-shadow: none !important;
 }
-.toolbarbutton-1:not([disabled=true]):hover, .toolbarbutton-1#stop-button:hover, .toolbarbutton-1#reload-button:hover,
-toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover,
-toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover,
-toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-.toolbarbutton-1:not([disabled=true]):hover:active, .toolbarbutton-1#stop-button:hover:active, .toolbarbutton-1#reload-button:hover:active,
-toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover:active,
-toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover:active,
-toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover:active {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-}
-.toolbarbutton-1:not([disabled=true])[open=true], .toolbarbutton-1:not([disabled=true])[checked=true], .toolbarbutton-1#stop-button[open=true], .toolbarbutton-1#stop-button[checked=true], .toolbarbutton-1#reload-button[open=true], .toolbarbutton-1#reload-button[checked=true],
-toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[open=true],
-toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true],
-toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[open=true],
-toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true],
-toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[open=true],
-toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true] {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-}
-.toolbarbutton-1:not([disabled=true])[checked=true]:not(:hover), .toolbarbutton-1#stop-button[checked=true]:not(:hover), .toolbarbutton-1#reload-button[checked=true]:not(:hover),
-toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true]:not(:hover),
-toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true]:not(:hover),
-toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true]:not(:hover) {
-  background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
-  background-repeat: repeat !important;
-  background-size: 2px 2px !important;
-  background-position: top left !important;
+@media (-moz-windows-classic) {
+  .toolbarbutton-1:not([disabled=true]):hover, .toolbarbutton-1#stop-button:hover, .toolbarbutton-1#reload-button:hover,
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover,
+  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover,
+  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  .toolbarbutton-1:not([disabled=true]):hover:active, .toolbarbutton-1#stop-button:hover:active, .toolbarbutton-1#reload-button:hover:active,
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover:active,
+  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover:active,
+  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover:active {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+  }
+  .toolbarbutton-1:not([disabled=true])[open=true], .toolbarbutton-1:not([disabled=true])[checked=true], .toolbarbutton-1#stop-button[open=true], .toolbarbutton-1#stop-button[checked=true], .toolbarbutton-1#reload-button[open=true], .toolbarbutton-1#reload-button[checked=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[open=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[open=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[open=true],
+  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true] {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+  }
+  .toolbarbutton-1:not([disabled=true])[checked=true]:not(:hover), .toolbarbutton-1#stop-button[checked=true]:not(:hover), .toolbarbutton-1#reload-button[checked=true]:not(:hover),
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true]:not(:hover),
+  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true]:not(:hover),
+  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true]:not(:hover) {
+    background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
+    background-repeat: repeat !important;
+    background-size: 2px 2px !important;
+    background-position: top left !important;
+  }
 }
 .toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button),
 toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) {
@@ -488,78 +548,84 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-badge-stack {
   background-color: transparent !important;
 }
 
-.toolbarbutton-1[type=menu] {
-  padding: 0 !important;
-  appearance: none !important;
+@media (-moz-windows-classic) {
+  .toolbarbutton-1[type=menu] {
+    padding: 0 !important;
+    appearance: none !important;
+  }
+  .toolbarbutton-1[type=menu]:not([disabled=true]):hover, .toolbarbutton-1[type=menu]:not([disabled=true]):hover:active, .toolbarbutton-1[type=menu]:not([disabled=true])[open=true], .toolbarbutton-1[type=menu]:not([disabled=true])[checked=true] {
+    box-shadow: none !important;
+  }
+  .toolbarbutton-1[type=menu]:not([disabled=true]):hover > .toolbarbutton-1 {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  .toolbarbutton-1[type=menu]:not([disabled=true]):hover:active > .toolbarbutton-1 {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+  }
+  .toolbarbutton-1[type=menu]:not([disabled=true])[open=true] > .toolbarbutton-1, .toolbarbutton-1[type=menu]:not([disabled=true])[checked=true] > .toolbarbutton-1 {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+  }
+  .toolbarbutton-1[type=menu]:not([disabled=true])[checked=true]:not(:hover) > .toolbarbutton-1 {
+    background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
+    background-repeat: repeat !important;
+    background-size: 2px 2px !important;
+    background-position: top left !important;
+  }
+  .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker {
+    -moz-context-properties: fill !important;
+    width: 13px !important;
+    content: none !important;
+    list-style-image: none !important;
+    background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    pointer-events: all !important;
+    height: 100% !important;
+    align-items: center !important;
+    fill: -moz-DialogText !important;
+  }
+  .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker[disabled=true] {
+    fill: ThreeDShadow !important;
+    filter: drop-shadow(1px 1px ThreeDHighlight) !important;
+  }
+  .toolbarbutton-1[type=menu]:hover .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  .toolbarbutton-1[type=menu]:hover:active .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+  }
+  .toolbarbutton-1[type=menu][open=true] .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+  }
+  .toolbarbutton-menu-dropmarker {
+    -moz-context-properties: fill !important;
+    padding-inline: 4px !important;
+    list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+    pointer-events: all !important;
+    height: 100% !important;
+    align-items: center !important;
+    fill: -moz-DialogText !important;
+  }
+  .toolbarbutton-menu-dropmarker[disabled=true] {
+    fill: ThreeDShadow !important;
+    filter: drop-shadow(1px 1px ThreeDHighlight) !important;
+  }
+  .toolbarbutton-1[type=menu]:hover .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  .toolbarbutton-1[type=menu]:hover:active .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+  }
+  .toolbarbutton-1[type=menu][open=true] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
+  }
 }
-.toolbarbutton-1[type=menu]:not([disabled=true]):hover, .toolbarbutton-1[type=menu]:not([disabled=true]):hover:active, .toolbarbutton-1[type=menu]:not([disabled=true])[open=true], .toolbarbutton-1[type=menu]:not([disabled=true])[checked=true] {
-  box-shadow: none !important;
+@media not (-moz-windows-classic) {
+  .toolbarbutton-1[type=menu] {
+    padding: 0 !important;
+    appearance: none !important;
+  }
 }
-.toolbarbutton-1[type=menu]:not([disabled=true]):hover > .toolbarbutton-1 {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-.toolbarbutton-1[type=menu]:not([disabled=true]):hover:active > .toolbarbutton-1 {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-}
-.toolbarbutton-1[type=menu]:not([disabled=true])[open=true] > .toolbarbutton-1, .toolbarbutton-1[type=menu]:not([disabled=true])[checked=true] > .toolbarbutton-1 {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-}
-.toolbarbutton-1[type=menu]:not([disabled=true])[checked=true]:not(:hover) > .toolbarbutton-1 {
-  background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
-  background-repeat: repeat !important;
-  background-size: 2px 2px !important;
-  background-position: top left !important;
-}
-.toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker {
-  -moz-context-properties: fill !important;
-  width: 13px !important;
-  content: none !important;
-  list-style-image: none !important;
-  background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  pointer-events: all !important;
-  height: 100% !important;
-  align-items: center !important;
-  fill: -moz-DialogText !important;
-}
-.toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker[disabled=true] {
-  fill: ThreeDShadow !important;
-  filter: drop-shadow(1px 1px ThreeDHighlight) !important;
-}
-.toolbarbutton-1[type=menu]:hover .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-.toolbarbutton-1[type=menu]:hover:active .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-}
-.toolbarbutton-1[type=menu][open=true] .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-}
-
-.toolbarbutton-menu-dropmarker {
-  -moz-context-properties: fill !important;
-  padding-inline: 4px !important;
-  list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
-  pointer-events: all !important;
-  height: 100% !important;
-  align-items: center !important;
-  fill: -moz-DialogText !important;
-}
-.toolbarbutton-menu-dropmarker[disabled=true] {
-  fill: ThreeDShadow !important;
-  filter: drop-shadow(1px 1px ThreeDHighlight) !important;
-}
-.toolbarbutton-1[type=menu]:hover .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-.toolbarbutton-1[type=menu]:hover:active .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-}
-.toolbarbutton-1[type=menu][open=true] .toolbarbutton-menu-dropmarker:not([disabled=true]) {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
-}
-
 toolbarseparator {
   appearance: auto !important;
   -moz-default-appearance: separator !important;
@@ -601,11 +667,23 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   list-style-image: var(--folder-icon) !important;
 }
 
+@media not (-moz-windows-classic) {
+  #nav-bar #nav-bar-customization-target {
+    padding-inline-start: 2px !important;
+  }
+}
 :root:not([spyglass-toolbars-locked=true]) #nav-bar toolbargrippy {
   margin-inline-end: 4px !important;
 }
-#nav-bar .toolbarbutton-1:not([type=menu]) {
-  padding: 3px 4px !important;
+@media (-moz-windows-classic) {
+  #nav-bar .toolbarbutton-1:not([type=menu]) {
+    padding: 3px 4px !important;
+  }
+}
+@media not (-moz-windows-classic) {
+  #nav-bar .toolbarbutton-1:not([type=menu]) {
+    padding: 7px 4px !important;
+  }
 }
 #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true]):hover:active, #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[open=true], #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[checked=true], #nav-bar .toolbarbutton-1:not([type=menu])#stop-button:hover:active, #nav-bar .toolbarbutton-1:not([type=menu])#stop-button[open=true], #nav-bar .toolbarbutton-1:not([type=menu])#stop-button[checked=true], #nav-bar .toolbarbutton-1:not([type=menu])#reload-button:hover:active, #nav-bar .toolbarbutton-1:not([type=menu])#reload-button[open=true], #nav-bar .toolbarbutton-1:not([type=menu])#reload-button[checked=true] {
   padding: 4px 3px 2px 5px !important;
@@ -618,10 +696,22 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   display: flex !important;
   margin-block-start: 2px !important;
 }
-:root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-text {
-  margin-inline-start: 2px !important;
-  margin-inline-end: 5px !important;
-  margin-block-end: 1px !important;
+@media (-moz-windows-classic) {
+  :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-text {
+    margin-inline-start: 2px !important;
+    margin-inline-end: 5px !important;
+    margin-block-end: 1px !important;
+  }
+  :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-icon {
+    margin-inline-start: -1px !important;
+  }
+}
+@media not (-moz-windows-classic) {
+  :root:not([spyglass-appearance-toolbar-mode="0"], [inFullscreen]) #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-text {
+    margin-inline-start: 4px !important;
+    margin-inline-end: 4px !important;
+    margin-block-end: 1px !important;
+  }
 }
 #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-icon,
 #nav-bar .toolbarbutton-1:not([type=menu]) .toolbarbutton-badge-stack > .toolbarbutton-icon {
@@ -673,10 +763,19 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   display: flex !important;
 }
 
+:root {
+  --computer-icon: url("chrome://spyglass/content/ie5/icons/computer_explorer_2k.ico") !important;
+}
+
 #status-bar {
   appearance: auto !important;
   -moz-default-appearance: statusbar !important;
   background-color: -moz-Dialog !important;
+}
+@media not (-moz-windows-classic) {
+  #status-bar {
+    padding-top: 2px !important;
+  }
 }
 :root[inFullscreen] #status-bar {
   display: none !important;
@@ -686,6 +785,11 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   -moz-default-appearance: statusbarpanel !important;
   align-items: center !important;
   padding: 0 1px !important;
+}
+@media not (-moz-windows-classic) {
+  #status-bar statusbarpanel {
+    padding: 0 1px 1px 2px !important;
+  }
 }
 #status-bar #statusbar-display #statuspanel {
   display: flex !important;
@@ -723,6 +827,11 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   margin-inline-start: 4px !important;
   margin-block-end: 2px !important;
 }
+@media not (-moz-windows-classic) {
+  #status-bar .statusbarpanel-text {
+    margin-block-end: 0 !important;
+  }
+}
 #status-bar #statusbar-display {
   list-style-image: var(--page-low-color-icon) !important;
 }
@@ -734,7 +843,12 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   list-style-image: url("chrome://spyglass/content/ie5/icons/world.ico") !important;
 }
 #status-bar #statusbar-zone[zone=local] {
-  list-style-image: url("chrome://spyglass/content/ie5/icons/computer_explorer_2k.ico") !important;
+  list-style-image: var(--computer-icon) !important;
+}
+@media not (-moz-windows-classic) {
+  #status-bar #statusbar-zone .statusbarpanel-icon {
+    margin-inline-start: 2px !important;
+  }
 }
 
 .resizerpanel {
@@ -757,13 +871,15 @@ resizer {
   height: unset !important;
 }
 
-#sidebar-box {
-  padding-inline-start: 1px !important;
-  padding-block-start: 1px !important;
-  border: 1px solid ThreeDShadow !important;
-  box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
-  margin-inline-end: 1px !important;
-  margin-block-end: 1px !important;
+@media (-moz-windows-classic) {
+  #sidebar-box {
+    padding-inline-start: 1px !important;
+    padding-block-start: 1px !important;
+    border: 1px solid ThreeDShadow !important;
+    box-shadow: inset 1px 1px 0 ThreeDHighlight, 1px 0 0 ThreeDHighlight, 0 1px 0 ThreeDHighlight, 1px 1px 0 ThreeDHighlight !important;
+    margin-inline-end: 1px !important;
+    margin-block-end: 1px !important;
+  }
 }
 #sidebar-box #sidebar-header {
   font-size: 1em !important;
@@ -788,15 +904,17 @@ resizer {
   width: 8px !important;
   height: 7px !important;
 }
-#sidebar-box #sidebar-header #sidebar-close:not([disabled=true]):hover {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-#sidebar-box #sidebar-header #sidebar-close:not([disabled=true]):hover:active, #sidebar-box #sidebar-header #sidebar-close:not([disabled=true])[open=true] {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-  padding-top: 3px !important;
-  padding-left: 3px !important;
-  padding-bottom: 1px !important;
-  padding-right: 1px !important;
+@media (-moz-windows-classic) {
+  #sidebar-box #sidebar-header #sidebar-close:not([disabled=true]):hover {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  #sidebar-box #sidebar-header #sidebar-close:not([disabled=true]):hover:active, #sidebar-box #sidebar-header #sidebar-close:not([disabled=true])[open=true] {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+    padding-top: 3px !important;
+    padding-left: 3px !important;
+    padding-bottom: 1px !important;
+    padding-right: 1px !important;
+  }
 }
 #sidebar-box #sidebar-header #sidebar-switcher-target {
   appearance: auto !important;
@@ -807,15 +925,17 @@ resizer {
   padding-inline: 4px !important;
   padding-block: 3px !important;
 }
-#sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true]):hover {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-#sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true]):hover:active, #sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true])[open=true] {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-  padding-top: 4px !important;
-  padding-left: 5px !important;
-  padding-bottom: 2px !important;
-  padding-right: 3px !important;
+@media (-moz-windows-classic) {
+  #sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true]):hover {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  #sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true]):hover:active, #sidebar-box #sidebar-header #sidebar-switcher-target:not([disabled=true])[open=true] {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+    padding-top: 4px !important;
+    padding-left: 5px !important;
+    padding-bottom: 2px !important;
+    padding-right: 3px !important;
+  }
 }
 #sidebar-box #sidebar-header #sidebar-switcher-target #sidebar-icon,
 #sidebar-box #sidebar-header #sidebar-switcher-target #sidebar-switcher-arrow {
@@ -891,15 +1011,17 @@ resizer {
   background-color: transparent !important;
   padding: 3px 4px !important;
 }
-#history-panel #view-button:not([disabled=true]):hover {
-  box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
-}
-#history-panel #view-button:not([disabled=true]):hover:active, #history-panel #view-button:not([disabled=true])[open=true] {
-  box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
-  padding-top: 4px !important;
-  padding-left: 5px !important;
-  padding-bottom: 2px !important;
-  padding-right: 3px !important;
+@media (-moz-windows-classic) {
+  #history-panel #view-button:not([disabled=true]):hover {
+    box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
+  }
+  #history-panel #view-button:not([disabled=true]):hover:active, #history-panel #view-button:not([disabled=true])[open=true] {
+    box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
+    padding-top: 4px !important;
+    padding-left: 5px !important;
+    padding-bottom: 2px !important;
+    padding-right: 3px !important;
+  }
 }
 #history-panel #view-button .toolbarbutton-text {
   margin-inline-start: 1px !important;
@@ -948,6 +1070,7 @@ resizer {
   margin: 0 !important;
   padding: 3px 6px !important;
   min-width: 6.818em !important;
+  background-color: -moz-Dialog !important;
 }
 #history-panel #sidebar-search-container #search-now {
   margin-inline-end: 6px !important;
@@ -967,6 +1090,154 @@ toolbarpaletteitem[place=palette] toolbarseparator {
 
 :root[spyglass-tabs-disabled=true] #TabsToolbar,
 :root[inFullscreen] #TabsToolbar {
+  display: none !important;
+}
+
+/* ::::: Internet Explorer 6 ::::: */
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] {
+  --navigator-throbber-background: rgb(255, 255, 255);
+  --navigator-throbber-background-image: url("chrome://spyglass/content/ie6/xp/throbber/throbber.png");
+  --navigator-throbber-busy-background-image: url("chrome://spyglass/content/ie6/xp/throbber/throbber-busy.png");
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] {
+  --page-icon: url("chrome://spyglass/content/ie6/xp/icons/page.ico") !important;
+  --page-low-color-icon: url("chrome://spyglass/content/ie6/xp/icons/page-lowcol.ico") !important;
+  --folder-icon: url("chrome://spyglass/content/ie6/xp/icons/folder.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/back.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #forward-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/forward.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #stop-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/stop.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #reload-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/refresh.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #home-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/home.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #print-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/print.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #favorites-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/favorites.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #history-panelmenu {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/history.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #search-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/search.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/related.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/back.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #forward-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #forward-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #forward-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/forward.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #stop-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #stop-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #stop-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/stop.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #reload-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #reload-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #reload-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/refresh.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #home-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #home-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #home-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/home.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #print-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #print-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #print-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/print.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #favorites-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #favorites-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #favorites-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/favorites.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #history-panelmenu:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #history-panelmenu:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #history-panelmenu:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/history.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #search-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #search-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #search-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/search.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/related.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] {
+  --toolbarbutton-small-icon-size: 16px !important;
+  --toolbarbutton-large-icon-size: 24px !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button),
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) {
+  text-shadow: 1px 1px 0 ThreeDHighlight !important;
+  filter: none !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon,
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon {
+  filter: grayscale(100%) !important;
+  opacity: 0.5 !important;
+}
+@media not (-moz-windows-classic) {
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] {
+    appearance: auto !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] > .toolbarbutton-1 {
+    appearance: none !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker {
+    width: 16px !important;
+    height: 100% !important;
+    padding-inline-end: 3px !important;
+    -moz-context-properties: fill !important;
+    content: none !important;
+    list-style-image: none !important;
+    background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    pointer-events: all !important;
+    height: 100% !important;
+    align-items: center !important;
+    fill: -moz-DialogText !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker::before {
+    content: "";
+    order: -1;
+    display: flex;
+    border-inline-start: 1px solid ThreeDShadow;
+    border-inline-end: 1px solid ThreeDHighlight;
+    height: calc(100% - 2px);
+    margin-block: 1px;
+    opacity: 0;
+    margin-inline-start: 2px !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu][disabled=true] .toolbarbutton-menu-dropmarker {
+    fill: ThreeDShadow !important;
+    opacity: 0.5 !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu]:not([disabled=true]):hover .toolbarbutton-menu-dropmarker::before, :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu]:not([disabled=true]):hover:active .toolbarbutton-menu-dropmarker::before, :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu]:not([disabled=true])[open=true] .toolbarbutton-menu-dropmarker::before {
+    opacity: 1;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button .toolbarbutton-icon,
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] #forward-button .toolbarbutton-icon {
+    margin-inline-start: 4px !important;
+  }
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] {
+  --computer-icon: url("chrome://spyglass/content/ie6/xp/icons/computer.ico") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #go-button {
+  padding: 0 11px 0 1px !important;
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/go.png") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #go-button:hover {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/go-hover.png") !important;
+}
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #go-button .toolbarbutton-icon {
+  margin-bottom: 1px !important;
+  margin-inline: 2px !important;
+}
+:root[spyglass-appearance-ie6] #history-panelmenu .toolbarbutton-text {
   display: none !important;
 }
 
