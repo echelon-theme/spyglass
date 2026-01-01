@@ -13,6 +13,8 @@ var g_WindowedBrowsing;
 
     const SPYGLASS_TABS_DISABLED_PREF = "spyglass.tabs.disabled";
     const BROWSER_OPEN_NEWWINDOW_PREF = "browser.link.open_newwindow";
+    const BROWSER_OPEN_TAB_ON_MIDDLE_PREF = "browser.tabs.opentabfor.middleclick";
+    const MIDDLECLICK_OPEN_NEW_WINDOW_PREF = "middlemouse.openNewWindow";
 
     class WindowedBrowsing
     {
@@ -48,6 +50,8 @@ var g_WindowedBrowsing;
         
         _disable() {
             PrefCalls.lockPref(BROWSER_OPEN_NEWWINDOW_PREF, 2);
+            PrefCalls.lockPref(BROWSER_OPEN_TAB_ON_MIDDLE_PREF, false);
+            PrefCalls.lockPref(MIDDLECLICK_OPEN_NEW_WINDOW_PREF, true);
 
             this.cmd_newNavigatorTab.setAttribute("oncommand", "OpenBrowserWindow()");
             this.cmd_newNavigatorTabNoEvent.setAttribute("oncommand", "OpenBrowserWindow()");
@@ -62,8 +66,18 @@ var g_WindowedBrowsing;
             if (PrefCalls.getPref(BROWSER_OPEN_NEWWINDOW_PREF) == 2) {
                 PrefCalls.setPref(BROWSER_OPEN_NEWWINDOW_PREF, 3, false);
             }
+            
+            if (!PrefCalls.getPref(BROWSER_OPEN_TAB_ON_MIDDLE_PREF)) {
+                PrefCalls.setPref(BROWSER_OPEN_TAB_ON_MIDDLE_PREF, true);
+            }
+
+            if (PrefCalls.getPref(MIDDLECLICK_OPEN_NEW_WINDOW_PREF)) {
+                PrefCalls.setPref(MIDDLECLICK_OPEN_NEW_WINDOW_PREF, false);
+            }
 
             PrefCalls.unlockPref(BROWSER_OPEN_NEWWINDOW_PREF);
+            PrefCalls.unlockPref(BROWSER_OPEN_TAB_ON_MIDDLE_PREF);
+            PrefCalls.unlockPref(MIDDLECLICK_OPEN_NEW_WINDOW_PREF);
 
             this.cmd_newNavigatorTab.setAttribute("oncommand", this.cmd_newNavigatorTab_original_command);
             this.cmd_newNavigatorTabNoEvent.setAttribute("oncommand", this.cmd_newNavigatorTabNoEvent_original_command);
