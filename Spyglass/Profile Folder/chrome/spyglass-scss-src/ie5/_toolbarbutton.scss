@@ -92,6 +92,16 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 @media (-moz-windows-classic) {
+    toolbarbutton:not([type="menu"]) {
+        .toolbarbutton-menu-dropmarker {
+            width: 5px !important;
+            height: 5px !important;
+            fill: -moz-DialogText !important;
+            list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+            margin-inline-start: 2px !important;
+        }
+    }
+
     .toolbarbutton-1[type="menu"] {
         padding: 0 !important;
         appearance: none !important;

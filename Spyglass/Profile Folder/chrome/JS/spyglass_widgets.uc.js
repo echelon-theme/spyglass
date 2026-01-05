@@ -127,21 +127,35 @@ class SpyglassWidgetManager
             defaultArea: CustomizableUI.AREA_NAVBAR,
 
             onCreated: function(toolbarbutton) {
-                let mailMenupopupFragment = `
+                toolbarbutton.setAttribute("wantdropmarker", "true");
+
+                let mailMenupopupFragment = window.MozXULElement.parseXULToFragment(`
                     <menupopup id="mail-button-menu-popup">
                         <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
-                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
-                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
-                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
+                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_new_message.label")}" />
+                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_send_link.label")}" />
+                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_send_page.label")}" />
                         <menuseparator />
-                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
+                        <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_news.label")}" />
                     </menupopup>
-                `;
+                `);
 
-                // Add menu attribute to make the toolbarbutton be able to open the menu
-                toolbarbutton.setAttribute("type", "menu");
+                toolbarbutton.appendChild(mailMenupopupFragment);
+                /*
+                *   [type="menu"] can automatically open the menu but
+                *   because of our hacky styling we lowkey cant
+                *   so we jus gonna manually gonna do it LOL!
+                */
+                let menupopup = toolbarbutton.querySelector(":scope > menupopup");
 
-                toolbarbutton.appendChild(window.MozXULElement.parseXULToFragment(mailMenupopupFragment));
+                toolbarbutton.addEventListener("command", (e) => {
+                    toolbarbutton.setAttribute("open", "true");
+                    menupopup.openPopup(toolbarbutton, "after_start", 0, 0, true);
+                });
+
+                menupopup.addEventListener("popuphiding", (e) => {
+                    toolbarbutton.removeAttribute("open");
+                });
 
                 return toolbarbutton;
             }

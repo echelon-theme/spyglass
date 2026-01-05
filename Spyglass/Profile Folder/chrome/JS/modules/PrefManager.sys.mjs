@@ -30,6 +30,8 @@ export class PrefManager
 				);
 				break;
 		}
+
+		this.root.dispatchEvent(new CustomEvent("spyglass-appearance-change"));
 	}
 
 	observe(subject, topic, data)

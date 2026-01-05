@@ -1,7 +1,15 @@
 var g_SpyglassAboutDialog;
 
 {
-    var { LocaleUtils, PrefCalls } = ChromeUtils.importESModule("chrome://userscripts/content/spyglass_utils.sys.mjs");
+    let { PrefManager } = ChromeUtils.importESModule("chrome://modules/content/PrefManager.sys.mjs"); 
+    let { LocaleUtils, PrefCalls } = ChromeUtils.importESModule("chrome://userscripts/content/spyglass_utils.sys.mjs");
+    let g_prefManager = new PrefManager(
+        document.documentElement,
+        [
+            "spyglass.appearance.xp",
+            "spyglass.appearance.ie6"
+        ]
+    );
 
     const SPYGLASS_IE6_PREF = "spyglass.appearance.ie6";
     const ABOUT_DIALOG_BUNDLE = "chrome://spyglass/locale/properties/aboutDialog.properties";
@@ -98,7 +106,6 @@ possible under the law.</html:textarea>
                     </box>
                     <vbox class="footer-links-container" flex="1">
                         <label class="copyright-link" is="text-link" href="">${LocaleUtils.str(ABOUT_DIALOG_BUNDLE, this._isIE6pref ? "copyright.2001" : "copyright.1999")}</label>
-                        <label class="acknowledgements-link" is="text-link" href="" hidden="${!this._isIE6pref}">${LocaleUtils.str(ABOUT_DIALOG_BUNDLE, "acknowledgements.label")}</label>
                     </vbox>
                     <hbox class="footer-button-container">
                         <button id="ok-button" label="${LocaleUtils.str(ABOUT_DIALOG_BUNDLE, "button.ok")}" />
@@ -120,10 +127,14 @@ possible under the law.</html:textarea>
         }
 
         init() {
-
             this._dialog.setAttribute("title", LocaleUtils.str(ABOUT_DIALOG_BUNDLE, "window.title"));
 
             this._buildWindowFragment();
+
+            document.documentElement.addEventListener(
+                "spyglass-appearance-change",
+                this._buildWindowFragment
+            )
         }
 
         _buildWindowFragment() {

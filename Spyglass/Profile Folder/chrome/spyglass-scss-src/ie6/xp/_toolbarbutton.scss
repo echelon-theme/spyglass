@@ -17,6 +17,23 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 @media not (-moz-windows-classic) {
+    toolbarbutton:not([type="menu"]) {
+        .toolbarbutton-menu-dropmarker {
+            list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+            fill: -moz-DialogText !important;
+            width: 5px !important;
+            height: 5px !important;
+            margin-inline-start: 2px !important;
+        }
+
+        &[disabled="true"] {
+            .toolbarbutton-menu-dropmarker {
+                fill: ThreeDShadow !important;
+                opacity: 0.5 !important;
+            }
+        }
+    }
+
     .toolbarbutton-1[type="menu"] {
         appearance: auto !important;
 

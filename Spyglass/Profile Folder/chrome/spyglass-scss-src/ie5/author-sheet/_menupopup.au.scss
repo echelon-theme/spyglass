@@ -11,6 +11,31 @@
         }
     }
 
+    @media not (-moz-windows-classic) {
+        menupopup,
+        toolbarbutton menupopup[placespopup] {
+            appearance: none !important;
+            padding: 1px !important;
+            background-color: Menu !important;
+            border: 1px solid ThreeDShadow !important;
+        }
+
+        menuseparator {
+            appearance: none !important;
+            padding: 0 !important;
+            margin-block: 3px !important;
+        }
+
+        menuitem {
+            appearance: none !important;
+        }
+
+        .menu-text {
+            appearance: none !important;
+            padding-inline-start: 17px !important;
+        }
+    }
+
     menuseparator {
         margin-inline: 1px !important;
     }

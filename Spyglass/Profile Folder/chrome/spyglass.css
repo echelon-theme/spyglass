@@ -401,6 +401,10 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
   list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/Related.ico") !important;
 }
 
+#mail-button {
+  list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/Mail.ico") !important;
+}
+
 #back-button:not([disabled=true]):hover, #back-button:not([disabled=true])[open=true], #back-button:not([disabled=true])[checked=true] {
   list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Back.ico") !important;
 }
@@ -439,6 +443,10 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
 
 #downloads-button:not([disabled=true]):hover, #downloads-button:not([disabled=true])[open=true], #downloads-button:not([disabled=true])[checked=true] {
   list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Related.ico") !important;
+}
+
+#mail-button:not([disabled=true]):hover, #mail-button:not([disabled=true])[open=true], #mail-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Mail.ico") !important;
 }
 
 #stop-button:hover {
@@ -549,6 +557,13 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-badge-stack {
 }
 
 @media (-moz-windows-classic) {
+  toolbarbutton:not([type=menu]) .toolbarbutton-menu-dropmarker {
+    width: 5px !important;
+    height: 5px !important;
+    fill: -moz-DialogText !important;
+    list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+    margin-inline-start: 2px !important;
+  }
   .toolbarbutton-1[type=menu] {
     padding: 0 !important;
     appearance: none !important;
@@ -1134,6 +1149,9 @@ toolbarpaletteitem[place=palette] toolbarseparator {
 :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button {
   list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/related.ico") !important;
 }
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #mail-button {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/mail.ico") !important;
+}
 :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #back-button:not([disabled=true])[checked=true] {
   list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/back.ico") !important;
 }
@@ -1164,6 +1182,9 @@ toolbarpaletteitem[place=palette] toolbarseparator {
 :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #downloads-button:not([disabled=true])[checked=true] {
   list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/related.ico") !important;
 }
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] #mail-button:not([disabled=true]):hover, :root[spyglass-appearance-ie6][spyglass-appearance-xp] #mail-button:not([disabled=true])[open=true], :root[spyglass-appearance-ie6][spyglass-appearance-xp] #mail-button:not([disabled=true])[checked=true] {
+  list-style-image: url("chrome://spyglass/content/ie6/xp/icons/toolbar/hover/mail.ico") !important;
+}
 :root[spyglass-appearance-ie6][spyglass-appearance-xp] {
   --toolbarbutton-small-icon-size: 16px !important;
   --toolbarbutton-large-icon-size: 24px !important;
@@ -1179,6 +1200,17 @@ toolbarpaletteitem[place=palette] toolbarseparator {
   opacity: 0.5 !important;
 }
 @media not (-moz-windows-classic) {
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton:not([type=menu]) .toolbarbutton-menu-dropmarker {
+    list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
+    fill: -moz-DialogText !important;
+    width: 5px !important;
+    height: 5px !important;
+    margin-inline-start: 2px !important;
+  }
+  :root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton:not([type=menu])[disabled=true] .toolbarbutton-menu-dropmarker {
+    fill: ThreeDShadow !important;
+    opacity: 0.5 !important;
+  }
   :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] {
     appearance: auto !important;
   }
