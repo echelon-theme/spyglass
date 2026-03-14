@@ -11,7 +11,6 @@
     const ABOUT_PAGES = {
         "newtab": "chrome://userchrome/content/pages/home/home.xhtml",
         "home": "chrome://userchrome/content/pages/home/home.xhtml",
-		"xuloobe": "chrome://xuloobe/content/xuloobe.xhtml",
     };
     const { AboutPageManager } = ChromeUtils.importESModule("chrome://modules/content/AboutPageManager.sys.mjs");
 
