@@ -118,19 +118,28 @@ class SpyglassWidgetManager
                 return toolbarbutton;
             },
         });
-
+                
         this.createWidget({
             id: "mail-button",
-            label: LocaleUtils.str(widgetsBundle, "mail_button.label"),
-            type: "button",
+            type: "custom",
             removable: true,
             defaultArea: CustomizableUI.AREA_NAVBAR,
 
-            onCreated: function(toolbarbutton) {
-                toolbarbutton.setAttribute("wantdropmarker", "true");
+            onBuild: function(aDocument) {
+                let toolbarbutton = aDocument.createXULElement("toolbarbutton");
+                let attributes = {
+                    id: "mail-button",
+                    class: "toolbarbutton-1 chromeclass-toolbar-additional",
+                    overflows: "true",
+                    label: LocaleUtils.str(widgetsBundle, "mail_button.label")
+                }
 
-                let mailMenupopupFragment = window.MozXULElement.parseXULToFragment(`
-                    <menupopup id="mail-button-menu-popup">
+                for (let attr in attributes) {
+                    toolbarbutton.setAttribute(attr, attributes[attr]);
+                }
+
+                let toolbarbuttonfragment = aDocument.defaultView.MozXULElement.parseXULToFragment(`
+                    <menupopup id="mail-button-menu-popup-new">
                         <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_mail.label")}" />
                         <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_new_message.label")}" />
                         <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_send_link.label")}" />
@@ -138,17 +147,17 @@ class SpyglassWidgetManager
                         <menuseparator />
                         <menuitem label="${LocaleUtils.str(widgetsBundle, "mail_button_read_news.label")}" />
                     </menupopup>
+                    <hbox class="toolbarbutton-icon-dropmarker">
+                        <image class="toolbarbutton-icon" label="${LocaleUtils.str(widgetsBundle, "mail_button.label")}" />
+                        <dropmarker type="menu" class="toolbarbutton-menu-dropmarker" label="${LocaleUtils.str(widgetsBundle, "mail_button.label")}" />
+                    </hbox>
+                    <label class="toolbarbutton-text" crop="end" flex="1" value="${LocaleUtils.str(widgetsBundle, "mail_button.label")}"/>
                 `);
 
-                toolbarbutton.appendChild(mailMenupopupFragment);
-                /*
-                *   [type="menu"] can automatically open the menu but
-                *   because of our hacky styling we lowkey cant
-                *   so we jus gonna manually gonna do it LOL!
-                */
-                let menupopup = toolbarbutton.querySelector(":scope > menupopup");
+                let menupopup = toolbarbuttonfragment.querySelector("menupopup");
+                toolbarbutton.appendChild(toolbarbuttonfragment);
 
-                toolbarbutton.addEventListener("command", (e) => {
+                toolbarbutton.addEventListener("mousedown", (e) => {
                     toolbarbutton.setAttribute("open", "true");
                     menupopup.openPopup(toolbarbutton, "after_start", 0, 0, true);
                 });

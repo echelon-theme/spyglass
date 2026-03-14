@@ -30,9 +30,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 
     @media (-moz-windows-classic) {
         & {
-            &:not([disabled="true"]),
-            &#stop-button,
-            &#reload-button {
+            &:not([disabled="true"]) {
                 &:hover {
                     box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
                 }
@@ -57,7 +55,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
         }
     }
 
-    &[disabled="true"]:not([type="menu"], #stop-button, #reload-button) {
+    &[disabled="true"]:not([type="menu"]) {
         opacity: 1 !important;
         color: ThreeDShadow !important;
         text-shadow: none !important;
@@ -89,6 +87,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
         border-radius: 0 !important;
         background-color: transparent !important;
     }
+
+    .toolbarbutton-icon-dropmarker {
+        align-items: center !important;
+    }
 }
 
 @media (-moz-windows-classic) {
@@ -96,9 +98,15 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
         .toolbarbutton-menu-dropmarker {
             width: 5px !important;
             height: 5px !important;
-            fill: -moz-DialogText !important;
+            fill: Buttontext !important;
             list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
             margin-inline-start: 2px !important;
+        }
+
+        .toolbarbutton-icon-dropmarker {
+            .toolbarbutton-menu-dropmarker {
+                margin-inline: 0 !important;
+            }
         }
     }
 
@@ -146,7 +154,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
             pointer-events: all !important;
             height: 100% !important;
             align-items: center !important;
-            fill: -moz-DialogText !important;
+            fill: Buttontext !important;
 
             &[disabled="true"] {
                 fill: ThreeDShadow !important;
@@ -176,7 +184,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
         pointer-events: all !important;
         height: 100% !important;
         align-items: center !important;
-        fill: -moz-DialogText !important;
+        fill: Buttontext !important;
 
         &[disabled="true"] {
             fill: ThreeDShadow !important;

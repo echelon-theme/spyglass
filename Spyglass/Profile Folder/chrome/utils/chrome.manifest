@@ -4,7 +4,7 @@ content modules                                                     ../JS/module
 
 locale  spyglass                                                    en-US ../locale/en-US/
 
-override chrome://browser/content/blanktab.html         ../pages/home/home.xhtml
+override chrome://browser/content/blanktab.html         			../pages/home/home.xhtml
 
 skin	userstyles	                                                classic/1.0	../CSS/
 content userchrome                                                  ../ contentaccessible=yes

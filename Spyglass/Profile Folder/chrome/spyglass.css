@@ -7,7 +7,7 @@
   appearance: auto !important;
   -moz-default-appearance: toolbox !important;
   background-color: transparent !important;
-  color: -moz-Dialog !important;
+  color: Buttontext !important;
 }
 @media (-moz-windows-classic) {
   :root:not([inFullscreen]) #navigator-toolbox {
@@ -52,7 +52,7 @@
 #navigator-toolbox .browser-toolbar {
   padding: 0 !important;
   background-color: transparent !important;
-  color: -moz-DialogText !important;
+  color: Buttontext !important;
   box-shadow: none !important;
 }
 @media not (-moz-windows-classic) {
@@ -71,6 +71,10 @@
   :root:not([inFullscreen]) #navigator-toolbox .browser-toolbar:not(:last-of-type) {
     border-block-end: 1px solid ThreeDShadow !important;
   }
+}
+
+#unified-extensions-button {
+  display: none !important;
 }
 
 toolbargrippy {
@@ -449,10 +453,6 @@ toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring] {
   list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Mail.ico") !important;
 }
 
-#stop-button:hover {
-  list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Stop.ico") !important;
-}
-
 :root {
   --page-icon: url("chrome://spyglass/content/ie5/icons/page.ico") !important;
   --page-low-color-icon: url("chrome://spyglass/content/ie5/icons/page-lowcol.ico") !important;
@@ -488,46 +488,36 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   text-shadow: none !important;
 }
 @media (-moz-windows-classic) {
-  .toolbarbutton-1:not([disabled=true]):hover, .toolbarbutton-1#stop-button:hover, .toolbarbutton-1#reload-button:hover,
-  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover,
-  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover,
-  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover {
+  .toolbarbutton-1:not([disabled=true]):hover,
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover {
     box-shadow: inset -1px -1px 0 ThreeDShadow, inset 1px 1px 0 ThreeDHighlight !important;
   }
-  .toolbarbutton-1:not([disabled=true]):hover:active, .toolbarbutton-1#stop-button:hover:active, .toolbarbutton-1#reload-button:hover:active,
-  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover:active,
-  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button:hover:active,
-  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button:hover:active {
+  .toolbarbutton-1:not([disabled=true]):hover:active,
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true]):hover:active {
     box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow !important;
   }
-  .toolbarbutton-1:not([disabled=true])[open=true], .toolbarbutton-1:not([disabled=true])[checked=true], .toolbarbutton-1#stop-button[open=true], .toolbarbutton-1#stop-button[checked=true], .toolbarbutton-1#reload-button[open=true], .toolbarbutton-1#reload-button[checked=true],
+  .toolbarbutton-1:not([disabled=true])[open=true], .toolbarbutton-1:not([disabled=true])[checked=true],
   toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[open=true],
-  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true],
-  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[open=true],
-  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true],
-  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[open=true],
-  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true] {
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true] {
     box-shadow: inset -1px -1px 0 ThreeDHighlight, inset 1px 1px 0 ThreeDShadow, inset 0 0 0 2px -moz-Dialog !important;
   }
-  .toolbarbutton-1:not([disabled=true])[checked=true]:not(:hover), .toolbarbutton-1#stop-button[checked=true]:not(:hover), .toolbarbutton-1#reload-button[checked=true]:not(:hover),
-  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true]:not(:hover),
-  toolbarbutton.bookmark-item:not(.subviewbutton)#stop-button[checked=true]:not(:hover),
-  toolbarbutton.bookmark-item:not(.subviewbutton)#reload-button[checked=true]:not(:hover) {
+  .toolbarbutton-1:not([disabled=true])[checked=true]:not(:hover),
+  toolbarbutton.bookmark-item:not(.subviewbutton):not([disabled=true])[checked=true]:not(:hover) {
     background-image: conic-gradient(-moz-Dialog 90deg, ThreeDHighlight 90deg 180deg, -moz-Dialog 180deg 270deg, ThreeDHighlight 270deg) !important;
     background-repeat: repeat !important;
     background-size: 2px 2px !important;
     background-position: top left !important;
   }
 }
-.toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button),
-toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) {
+.toolbarbutton-1[disabled=true]:not([type=menu]),
+toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu]) {
   opacity: 1 !important;
   color: ThreeDShadow !important;
   text-shadow: none !important;
   filter: drop-shadow(1px 1px ThreeDHighlight) !important;
 }
-.toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon,
-toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon {
+.toolbarbutton-1[disabled=true]:not([type=menu]) .toolbarbutton-icon,
+toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu]) .toolbarbutton-icon {
   filter: url("chrome://spyglass/content/ie5/disabled-icon-filter.svg#disabledIcon") !important;
 }
 .toolbarbutton-1[type=menu],
@@ -555,14 +545,21 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-badge-stack {
   border-radius: 0 !important;
   background-color: transparent !important;
 }
+.toolbarbutton-1 .toolbarbutton-icon-dropmarker,
+toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-icon-dropmarker {
+  align-items: center !important;
+}
 
 @media (-moz-windows-classic) {
   toolbarbutton:not([type=menu]) .toolbarbutton-menu-dropmarker {
     width: 5px !important;
     height: 5px !important;
-    fill: -moz-DialogText !important;
+    fill: Buttontext !important;
     list-style-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
     margin-inline-start: 2px !important;
+  }
+  toolbarbutton:not([type=menu]) .toolbarbutton-icon-dropmarker .toolbarbutton-menu-dropmarker {
+    margin-inline: 0 !important;
   }
   .toolbarbutton-1[type=menu] {
     padding: 0 !important;
@@ -597,7 +594,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-badge-stack {
     pointer-events: all !important;
     height: 100% !important;
     align-items: center !important;
-    fill: -moz-DialogText !important;
+    fill: Buttontext !important;
   }
   .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker[disabled=true] {
     fill: ThreeDShadow !important;
@@ -619,7 +616,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-badge-stack {
     pointer-events: all !important;
     height: 100% !important;
     align-items: center !important;
-    fill: -moz-DialogText !important;
+    fill: Buttontext !important;
   }
   .toolbarbutton-menu-dropmarker[disabled=true] {
     fill: ThreeDShadow !important;
@@ -700,7 +697,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
     padding: 7px 4px !important;
   }
 }
-#nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true]):hover:active, #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[open=true], #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[checked=true], #nav-bar .toolbarbutton-1:not([type=menu])#stop-button:hover:active, #nav-bar .toolbarbutton-1:not([type=menu])#stop-button[open=true], #nav-bar .toolbarbutton-1:not([type=menu])#stop-button[checked=true], #nav-bar .toolbarbutton-1:not([type=menu])#reload-button:hover:active, #nav-bar .toolbarbutton-1:not([type=menu])#reload-button[open=true], #nav-bar .toolbarbutton-1:not([type=menu])#reload-button[checked=true] {
+#nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true]):hover:active, #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[open=true], #nav-bar .toolbarbutton-1:not([type=menu]):not([disabled=true])[checked=true] {
   padding: 4px 3px 2px 5px !important;
 }
 :root:not([inFullscreen])[spyglass-appearance-toolbar-mode="0"] #nav-bar .toolbarbutton-1:not([type=menu]):not(#PanelUI-menu-button, #nav-bar-overflow-button) {
@@ -747,7 +744,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
 #nav-bar #nav-bar-overflow-button {
   -moz-context-properties: fill !important;
   list-style-image: url("chrome://spyglass/content/ie5/chevron.svg") !important;
-  fill: -moz-DialogText !important;
+  fill: Buttontext !important;
   padding: 5px 2px !important;
   align-items: flex-start !important;
 }
@@ -786,6 +783,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) .toolbarbutton-text {
   appearance: auto !important;
   -moz-default-appearance: statusbar !important;
   background-color: -moz-Dialog !important;
+  color: Buttontext !important;
 }
 @media not (-moz-windows-classic) {
   #status-bar {
@@ -911,7 +909,7 @@ resizer {
   background-color: transparent !important;
   border-radius: 0 !important;
   list-style-image: url("chrome://spyglass/content/ie5/close.svg") !important;
-  fill: -moz-DialogText !important;
+  fill: Buttontext !important;
   align-self: flex-start !important;
   margin-inline-end: 2px !important;
 }
@@ -1045,12 +1043,14 @@ resizer {
   display: none !important;
 }
 #history-panel #view-button::after {
+  -moz-context-properties: fill !important;
   content: "" !important;
   display: flex !important;
   width: 5px !important;
   height: 5px !important;
   background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
   margin-inline-start: 4px !important;
+  fill: Buttontext !important;
 }
 #history-panel #search-button {
   list-style-image: url("chrome://spyglass/content/ie5/icons/sidebar/search.png") !important;
@@ -1189,13 +1189,13 @@ toolbarpaletteitem[place=palette] toolbarseparator {
   --toolbarbutton-small-icon-size: 16px !important;
   --toolbarbutton-large-icon-size: 24px !important;
 }
-:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button),
-:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) {
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu]),
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu]) {
   text-shadow: 1px 1px 0 ThreeDHighlight !important;
   filter: none !important;
 }
-:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon,
-:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu], #stop-button, #reload-button) .toolbarbutton-icon {
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[disabled=true]:not([type=menu]) .toolbarbutton-icon,
+:root[spyglass-appearance-ie6][spyglass-appearance-xp] toolbarbutton.bookmark-item:not(.subviewbutton)[disabled=true]:not([type=menu]) .toolbarbutton-icon {
   filter: grayscale(100%) !important;
   opacity: 0.5 !important;
 }
@@ -1230,7 +1230,7 @@ toolbarpaletteitem[place=palette] toolbarseparator {
     pointer-events: all !important;
     height: 100% !important;
     align-items: center !important;
-    fill: -moz-DialogText !important;
+    fill: Buttontext !important;
   }
   :root[spyglass-appearance-ie6][spyglass-appearance-xp] .toolbarbutton-1[type=menu] .toolbarbutton-menu-dropmarker::before {
     content: "";

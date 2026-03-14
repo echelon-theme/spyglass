@@ -28,13 +28,6 @@
     "mail-button": "ie5/icons/toolbar/hover/Mail.ico",
 ));
 
-// Stop Button in Internet Explorer is always enabled
-#stop-button {
-    &:hover {
-        list-style-image: url("chrome://spyglass/content/ie5/icons/toolbar/hover/Stop.ico") !important;
-    }
-}
-
 :root {
     --page-icon: url("chrome://spyglass/content/ie5/icons/page.ico") !important;
     --page-low-color-icon: url("chrome://spyglass/content/ie5/icons/page-lowcol.ico") !important;

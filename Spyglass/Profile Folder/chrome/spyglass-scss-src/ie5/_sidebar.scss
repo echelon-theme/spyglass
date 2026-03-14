@@ -25,7 +25,7 @@
             background-color: transparent !important;
             border-radius: 0 !important;
             list-style-image: url("chrome://spyglass/content/ie5/close.svg") !important;
-            fill: -moz-DialogText !important;
+            fill: Buttontext !important;
             align-self: flex-start !important;
             margin-inline-end: 2px !important;
 
@@ -197,12 +197,15 @@ treecol[hideheader="true"] {
         }
 
         &::after {
+            -moz-context-properties: fill !important;
             content: '' !important;
             display: flex !important;
             width: 5px !important;
             height: 5px !important;
             background-image: url("chrome://spyglass/content/ie5/arrow.svg") !important;
             margin-inline-start: 4px !important;
+            fill: Buttontext !important;
+
         }
     }
 

@@ -6,6 +6,7 @@
     appearance: auto !important;
     -moz-default-appearance: statusbar !important;
     background-color: -moz-Dialog !important;
+    color: Buttontext !important;
 
     @media not (-moz-windows-classic) {
         & {

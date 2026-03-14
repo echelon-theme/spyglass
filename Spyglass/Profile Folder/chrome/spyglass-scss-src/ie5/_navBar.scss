@@ -24,9 +24,7 @@
             }
         }
 
-        &:not([disabled="true"]),
-        &#stop-button,
-        &#reload-button {
+        &:not([disabled="true"]) {
             &:hover:active,
             &[open="true"],
             &[checked="true"] {
@@ -91,7 +89,7 @@
     #nav-bar-overflow-button {
         -moz-context-properties: fill !important;
         list-style-image: url("chrome://spyglass/content/ie5/chevron.svg") !important;
-        fill: -moz-DialogText !important;
+        fill: Buttontext !important;
         padding: 5px 2px !important;
         align-items: flex-start !important;
 

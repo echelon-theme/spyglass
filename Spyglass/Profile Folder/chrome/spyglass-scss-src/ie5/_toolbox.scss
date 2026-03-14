@@ -6,7 +6,7 @@
     appearance: auto !important;
     -moz-default-appearance: toolbox !important;
     background-color: transparent !important;
-    color: -moz-Dialog !important;
+    color: Buttontext !important;
 
     @media (-moz-windows-classic) {
         :root:not([inFullscreen]) & {
@@ -76,9 +76,13 @@
 
         padding: 0 !important;
         background-color: transparent !important;
-        color: -moz-DialogText !important;
+        color: Buttontext !important;
         box-shadow: none !important;
     }
+}
+
+#unified-extensions-button {
+    display: none !important;
 }
 
 toolbargrippy {

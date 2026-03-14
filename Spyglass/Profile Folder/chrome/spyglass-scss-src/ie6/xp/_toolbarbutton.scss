@@ -5,7 +5,7 @@
 
 .toolbarbutton-1,
 toolbarbutton.bookmark-item:not(.subviewbutton) {
-    &[disabled="true"]:not([type="menu"], #stop-button, #reload-button) {
+    &[disabled="true"]:not([type="menu"]) {
         text-shadow: 1px 1px 0 ThreeDHighlight !important;
         filter: none !important;
 
@@ -54,7 +54,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
             pointer-events: all !important;
             height: 100% !important;
             align-items: center !important;
-            fill: -moz-DialogText !important;
+            fill: Buttontext !important;
 
             &::before {
                 content: '';

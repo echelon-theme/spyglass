@@ -30,31 +30,42 @@ var g_spyglassToolbox;
     customElements.define("toolbargrippy", ToolbarGrippyElement);
 
     class SpyglassToolboxLayout {
+        _navBarObserver = null;
+        _resizePending = false;
+        _freezeToolbarSizing = false;
+
         get _navBarTarget() {
             return document.querySelector("#nav-bar #nav-bar-customization-target");
         }
 
         get _widestToolbarbuttonElem() {
             let navBar = this._navBarTarget;
+            if (!navBar)
+                return null;
 
-            if (!navBar || !navBar.children.length)
-                return;
-
-            let widestToolbarButton = null;
+            let widest = null;
             let maxWidth = 0;
 
-            for (let toolbarbutton of navBar.children) {
-                if (!gCustomizeMode._customizing && toolbarbutton.nodeName == "toolbarbutton" && toolbarbutton.id !== "unified-extensions-button") {
-                    let toolbarbuttonWidth = toolbarbutton.clientWidth;
+            for (let el of navBar.children) {
+                if (
+                    el.nodeName === "toolbarbutton" &&
+                    !el.hidden &&
+                    !el.classList.contains("toolbarbutton-overflow-button") &&
+                    el.id !== "unified-extensions-button" &&
+                    el.getAttribute("type") !== "menu"
+                ) {
+                    el.style.removeProperty("width");
 
-                    if (toolbarbuttonWidth > maxWidth) {
-                        maxWidth = toolbarbuttonWidth;
-                        widestToolbarButton = toolbarbutton;
+                    let width = el.getBoundingClientRect().width;
+
+                    if (width > maxWidth) {
+                        maxWidth = width;
+                        widest = el;
                     }
                 }
             }
 
-            return widestToolbarButton;
+            return widest;
         }
 
         async init() 
@@ -105,9 +116,7 @@ var g_spyglassToolbox;
 
             this._setEqualToolbarbuttonSizes();
             this.appendTabBarCloseButton();
-
-            let observer = new MutationObserver(this._setEqualToolbarbuttonSizes.bind(this));
-            observer.observe(this._navBarTarget, { childList: true });
+            this.initNavBarSizing();
         }
 
         _onPopupShowing()
@@ -199,12 +208,66 @@ var g_spyglassToolbox;
             toolbarElement.insertBefore(toolbarElementLabel, toolbarElement.firstChild);
         }
 
-        _setEqualToolbarbuttonSizes() {
-            document.documentElement.style.removeProperty(`--nav-bar-toolbarbutton-width`);
+        initNavBarSizing() {
+            let navBar = this._navBarTarget;
+            if (!navBar)
+                return;
 
-            document.documentElement.style.setProperty(
-                `--nav-bar-toolbarbutton-width`,
-                `${this._widestToolbarbuttonElem.clientWidth}px`
+            this._navBarObserver?.disconnect();
+
+            this._navBarObserver = new MutationObserver(() => {
+                this._scheduleSizeUpdate();
+            });
+
+            this._navBarObserver.observe(navBar, {
+                childList: true
+            });
+
+            window.addEventListener("customizationstarting", () => {
+                this._freezeToolbarSizing = true;
+            });
+
+            window.addEventListener("customizationending", () => {
+                this._freezeToolbarSizing = false;
+                this._scheduleSizeUpdate();
+            });
+
+            window.addEventListener("resize", () => {
+                this._scheduleSizeUpdate();
+            });
+
+            this._scheduleSizeUpdate();
+        }
+
+        _scheduleSizeUpdate() {
+            if (this._freezeToolbarSizing || this._resizePending)
+                return;
+
+            this._resizePending = true;
+
+            requestAnimationFrame(() => {
+                this._resizePending = false;
+                this._setEqualToolbarbuttonSizes();
+            });
+        }
+
+        _setEqualToolbarbuttonSizes() {
+            if (this._freezeToolbarSizing)
+                return;
+
+            let root = document.documentElement.style;
+
+            root.removeProperty("--nav-bar-toolbarbutton-width");
+
+            let widest = this._widestToolbarbuttonElem;
+            if (!widest)
+                return;
+
+            let width = widest.getBoundingClientRect().width;
+
+            root.setProperty(
+                "--nav-bar-toolbarbutton-width",
+                `${width}px`
             );
         }
     }
